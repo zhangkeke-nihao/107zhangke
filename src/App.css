@@ -1,132 +1,124 @@
-*{
-  margin:0;
-  padding:0;
+body {
+  margin: 0;
 }
-ul,li{list-style: none;}
-
-
-#wrap{
-  position: relative;
-  width:300px;
-  height: 570px;
-  margin: 50px auto;
-  background:rgb(212, 209, 209);
-  border:1px solid #ddd;
-  overflow: hidden;
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+h2 {
+  margin: 0;
 }
 
+/* 头部 */
 .top{
-  width: 300px;
-  height:40px;
-  line-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
   background: #000;
   color: #fff;
 }
 .top span{
-  display: inline-block;
-  margin-left:5px;
   font-size:18px;
-}
-.top .right{
-  float:right;
-  color: #fff;
-  margin-right: 10px;
-  margin-top:5px;
 }
 .top img{
   width:20px;
   height: 20px;
-}
-.top .left{
-  margin-right:5px;
+  margin-right: 15px;
 }
 
 
-
-/* 内容部分 */
-ul{
-  position: absolute;
-  width:100%;
-  margin-top:1px;
-  /* z-index:10; */
-}
-ul li{
-  display: flex;
-  justify-content:space-evenly;
-  align-items: center;
-  height:60px;
-  border-bottom: 1px solid #ddd;
-  line-height: 50px;
-  background: #fff;
-  font-size: 14px;
-  padding-left: 10px;
-}
-img{
-  width: 50px;
-  height: 50px;
-}
-.box{
-  margin:-20px 0 0 5px ; 
-  flex-grow: 2;
-}
-.box div{
-  height: 20px;
-}
-.box .message{
-  font-size: 12px;padding:0;color: #bbb;
-}
-
-ul li .fr{
-  flex-grow: 0;
-  margin-right: 5px;
-  font-family: 'Courier New', Courier, monospace;
-  color: #bbb;
-  font-size:12px;
-} 
-
-/* 底部  底部用flex布局*/
-.bottom{                 
-  position: absolute;
+/* 底部 */
+.nav {
+  position: fixed;
   bottom: 0;
+  display: flex;
   width: 100%;
-  height: 60px;
-  background: #fff;
-  color:rgb(94, 93, 93);
-  display: flex;
-  justify-content: space-evenly;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+.item {
+  flex: 1;
+  padding: 5px;
   text-align: center;
-  
 }
-.bottom div{
-  margin-top:5px;
+.icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin:0 auto;
 }
-.bottom img{
-  width:25px;
-  height: 25px;
-}
-.bottom p{
+.botname {
   font-size: 12px;
-} 
-
-
-.floor{
-  position: absolute;
-  /* z-index:-1;  */
-  left:25%;
-  top:15%;
-  
-  width:150px;
-  height: 300px;
-  background:rgb(235, 213, 213);
-  border:1px solid #ddd;
-  display: flex;
-  flex-direction: column;
+  color: #aaa;
 }
-.floor button{
-  margin:auto;
-  width:50px;
+
+/* 内容 */
+.message {
+  display: flex;
+  padding: 10px;
+  padding-left: 0;
+  border-top: 1px solid #eee;
+}
+
+.message img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+.content {
+  flex: 1;
+}
+.name {
   height: 30px;
 }
+.title {
+  float: left;
+  font-size: 16px;
+}
+.time {
+  float: right;
+  font-size: 12px;
+  color: #aaa;
+}
+.msg{
+  height: 30px;
+}
+.recentMsg {
+  float: left;
+  font-size: 14px;
+  color: #aaa;
+  margin-top:5px; 
+}
+.button{
+  float: right;
+  width:50px;
+  background: rgb(215, 228, 236);
+  border:1px solid;
+  text-align: center;
+} 
 
 
 
+.selectBtnCon {
+  width: 40px;
+}
+.selectBtn {
+  width: 20px;
+  height: 20px;
+  margin: 15px auto;
+  border-radius: 50%;
+}
+.selected {
+  background-color: #ff0000;
+}
+.noSelected {
+  background-color: #eeeeee;
+}
+
+.multipleDeleteBtn {
+  padding: 1px 10px;
+  border: 1px solid #000000;
+  margin: 10px auto 0;
+  width: 35px;
+}

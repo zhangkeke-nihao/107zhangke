@@ -1,222 +1,177 @@
 import React, { Component } from 'react';
-import MessageItemView from './Message.js';
-import NavItemView from './botnav.js';
-import FloorItemView from './floor.js';
-import TopItemView from './top.js';
-
-// import logo from './logo.svg';
+import MessageItem from './components/MessageItem.js';
+import TopBar from './components/TopBar.js';
+import NavBar from './components/NavBar.js';
+import DialogView from './components/DialogView.js';
+import DeleteView from './components/DeleteView.js';
+import {DIALOG_SHOW_STATES} from './const'
 import './App.css';
 
-
-const icon1 = require('./image/bg1.jpg')   //require():加载一个外部模块
+const icon1 = require('./image/bg1.jpg')
 const icon2 = require('./image/bg2.jpg')
 const icon3 = require('./image/bg3.jpg')
 
-const icon4= require('./image/message.png')
-const icon5 = require('./image/list.png')
-const icon6 = require('./image/find.png')
-const icon7 = require('./image/wo.png')
-
-const icon8 = require('./image/bg4.jpg')   //require():加载一个外部模块
-const icon9 = require('./image/bg5.jpg')
-const icon10 = require('./image/bg6.jpg')
-const icon11 = require('./image/bg7.jpg')
-const icon12 = require('./image/search.png')
-const icon13 = require('./image/add.png')
 
 class App extends Component {
-    constructor(props){
-      super(props);
+  constructor(props){
+    super(props);
 
-      this.state={
-        top : [
-          {
-            title : '微信',
-            aicon : icon12,
-            bicon : icon13
-          }
-        ],
-        message : [
-          {
-            icon : icon1,
-            name : '小年糕',
-            description : 'hello 小年糕',
-            time : '2018/7/18 11:00' 
-          },
-          {
-            icon : icon2,
-            name : '小板凳',
-            description : 'hello 小板凳',
-            time : '2018/7/19 12:00' 
-          },
-          {
-            icon : icon3,
-            name : '小豆包',
-            description : 'hello 小豆包',
-            time : '2018/7/19 13:00' 
-          },
-          {
-            icon : icon8,
-            name : '小年糕',
-            description : 'hello 小年糕',
-            time : '2018/7/19 13:00' 
-          },
-          {
-            icon : icon9,
-            name : '小豆包',
-            description : 'hello 小豆包',
-            time : '2018/7/19 13:00' 
-          },
-          {
-            icon : icon10,
-            name : '小板凳',
-            description : 'hello 小板凳',
-            time : '2018/7/19 13:00' 
-          },
-          {
-            icon : icon11,
-            name : '小豆包',
-            description : 'hello 小豆包',
-            time : '2018/7/19 13:00' 
-          },
-        ],
-        nav : [
-          {
-            icon : icon4,
-            title : '微信'
-          },
-          {
-            icon : icon5,
-            title : '通讯录'
-          },
-          {
-            icon : icon6,
-            title : '发现'
-          },
-          {
-            icon : icon7,
-            title : '我'
-          }
-        ],
-        btn : [
-          {
-            word : '全选'
-          },
-          {
-            word : '添加'
-          },
-          {
-            word : '删除'
-          },
-          {
-            word : '修改'
-          }
-        ],
-        showDailog : false
-      }
+    this.state = {
+      message:[
+        {
+          icon: icon1,
+          title: '小年糕',
+          descript: 'Hello 小年糕',
+          time: '2018-7-21'
+        },
+        {
+          icon: icon2,
+          title: '小板凳',
+          descript: 'Hello 小板凳',
+          time: '2018-7-22'
+        },
+        {
+          icon: icon3,
+          title: '小豆包',
+          descript: 'Hello 小豆包',
+          time: '2018-7-23'
+        },
+      ],
+      showDialog: DIALOG_SHOW_STATES.HIDE,
+      deleArr: null,
+      handleIndex: null
     }
+  }
 
-   
-    onItemClick = (message) =>{
-        console.log(message);
-        if(this.state.showDailog == 'flase'){
-          this.setState({
-            showDailog : true   
-        })
-        }else if(this.state.showDailog == 'true'){
-          this.setState({
-              showDailog : false
-          })
-        }
-        
+  //点击加号，转换状态值
+  handleShowAddDialog = () => {
+    this.setState({
+      showDialog: DIALOG_SHOW_STATES.SHOW_ADD_MESSAGE,
+    })
+  }
+   //点击更多，转换状态值,把当前li的序号赋值给handleIndex
+  handleShowMoreDialog = index => {
+    this.setState({
+      showDialog: DIALOG_SHOW_STATES.SHOW_MORE_DIALOG,
+      handleIndex: index,
+    })
+  }
+
+  //关闭转换状态
+  handleShowDialog = isActive => {
+    this.setState({
+      showDialog: isActive,
+    })
+  }
+  //添加消息到最上面
+  handleAddItem = item => {
+    const newMessage = this.state.message.slice();
+    newMessage.unshift({
+      icon : icon1,
+      ...item
+    })
+    this.setState({
+      message : newMessage,
+      showDialog : DIALOG_SHOW_STATES.HIDE
+    })
+  }
+
+  //渲染内容页面
+  renderMessageItem = () => {
+    const msg = this.state.message.map((item,idx) => {
+      return  <MessageItem 
+                key={idx} 
+                item={item} 
+                index={idx} 
+                onShowMoreDialog={this.handleShowMoreDialog} 
+                deleArr={this.state.deleArr}
+                onSelectItem={this.handleSelectItem}
+              />
+    })
+    return msg;
+  }
+  //置顶
+  handleSetTop = () =>{
+    const {handleIndex,message} = this.state;
+    const newMessage1 = message.slice();
+    const m = newMessage1[handleIndex];
+    newMessage1.splice(handleIndex,1);
+    newMessage1.unshift(m);
+    this.setState({
+      message: newMessage1,
+      showDialog:DIALOG_SHOW_STATES.HIDE,
+    })
+  }
+  //删除
+  handleDeleteItem = () =>{
+    const {handleIndex,message} = this.state;
+    const newMessage1 = message.slice();
+    newMessage1.splice(handleIndex,1);
+    this.setState({
+      message: newMessage1,
+      showDialog:DIALOG_SHOW_STATES.HIDE,
+    })
+  }
+
+  //点击多选，把当前序号放到delearr数组中，关闭dialog
+  handleChioceClick = () => {
+    const { handleIndex } = this.state;
+    this.setState({
+      deleArr: [handleIndex],
+      showDialog: DIALOG_SHOW_STATES.HIDE,
+    })
+  }
+
+   //点击多选选择的函数  //还有点问题
+   handleSelectItem = index => {
+    const { deleArr } = this.state;
+    const deleArrTmp = deleArr.slice();
+
+    const idx = deleArrTmp.findIndex(item => item === index);
+    if(idx >= 0){
+      deleArrTmp.splice(idx,1)
+    } else {
+      deleArrTmp.push(index)
     }
-    renderDailog = () => {
-      if(this.setState.showDailog){
-         return <FloorItemView onClick={this.onItemClick}/>
-        
-      }
-      return null;
-    }
+    this.setState({
+      deleArr: deleArrTmp,
+    })
+  }
 
-
-    renderFloor = () => {
-      const btnmsg = this.state.btn.map((item,idx) => {
-        return <FloorItemView key={idx} item={item} />
-      });
-      return btnmsg;
-    }
-
-
-
-
-
-
-
-
-    //上层区域
-    renderTop = () => {
-      const topmsg = this.state.top.map((item,idx) => {
-        return <TopItemView key={idx} item={item} />
-      });
-      return topmsg;
-    }
-
-
-    //渲染内容区域的方法
-    renderMessages = () => {
-        const msg = this.state.message.map((item,idx) => {
-          return <MessageItemView key={idx} item={item} onClick={this.onItemClick}/>
-      });
-      return msg;
-    }
-
-    //渲染底部的方法
-    renderBottomNav = () => {
-       const botmsg = this.state.nav.map((item,idx) => {
-         return <NavItemView key={idx} item={item}  />
-      });
-      return botmsg;
-    }
-
-   
+  //点击删除  //还有点问题
+  handleDeleteMultiple = () => {
+    const {deleArr,message} = this.state;
+    const messageTmp = message.slice();
+    deleArr.reverse();
+    deleArr.forEach(item => {
+        messageTmp.splice(item,1)
+      })
+    this.setState({
+      message: messageTmp,
+      deleArr: null
+    })
+  }
 
 
 
-    render() {
-      return (
-        <div id="wrap">
-              <div className="top">
-                  {
-                    this.renderTop()
-                  }
-              </div>
-
-            
-              <ul>
-                {
-                  this.renderMessages()
-                }
-              </ul>
-
-              <div className="bottom">
-                {
-                  this.renderBottomNav()
-                }
-              </div>
-
-              <div className="floor">
-                {
-                  this.renderDailog()
-                }
-                {
-                  this.renderFloor()
-                }
-              </div>
-        </div>
-
-    
-      );
-    }
+  render() {
+    return (
+      <div className="wrap">
+        <TopBar onShowAddDialog={this.handleShowAddDialog}/>
+        {this.renderMessageItem()}
+        <NavBar /> 
+        <DialogView 
+          isActive={this.state.showDialog} 
+          onCloseClick={this.handleShowDialog} 
+          addItem={this.handleAddItem}
+          onSetTop={this.handleSetTop}
+          onDeleteItem={this.handleDeleteItem}
+          onChioceItemClick={this.handleChioceClick}
+        />
+        <DeleteView deleArr={this.state.deleArr} onDeleteMultiple={this.handleDeleteMultiple}/>
+      </div>
+    );
+  }
 }
 
 export default App;
