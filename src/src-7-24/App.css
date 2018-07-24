@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+}
+ul,li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+h2 {
+  margin: 0;
+}
+
+
+
+/* 内容 */
+.message {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+span{
+  flex:1;
+  float: left;
+}
+.content{
+  float: left;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  background: #000000;
+}
+.content div,img{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.red{
+  background: red;
+}
+.pink{
+  background: pink;
+}
+.black{
+  background: black;
+}
+.yellow{
+  background: yellow;
+}
+
+.check-icon {
+  width: 13px;
+  height: 13px;
+  margin-left: 3.5px;
+}
+
+
+
+.selectBtnCon {
+  width: 40px;
+}
+.selectBtn {
+  width: 20px;
+  height: 20px;
+  margin: 15px auto;
+  border-radius: 50%;
+}
+.selected {
+  background-color: #ff0000;
+}
+.noSelected {
+  background-color: #eeeeee;
+}
+
+.multipleDeleteBtn {
+  padding: 1px 10px;
+  border: 1px solid #000000;
+  margin: 10px auto 0;
+  width: 35px;
+}
