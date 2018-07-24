@@ -1,0 +1,12 @@
+/* 头部 */
+.top{
+    display: flex;
+    text-align: center;
+    padding: 5px;
+    background: #000;
+    color: #fff;
+    font-size:18px;
+  }
+  
+  
+  
