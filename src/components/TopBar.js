@@ -1,13 +1,16 @@
 import React,{Component} from 'react';
-
+import '../App.css';
+import { DIALOG_SHOW_STATES } from '../const'
+import { connect } from 'react-redux';
 const icons = require('../image/search.png')
 const icona = require('../image/add.png')
 
-export default class TopBar extends Component{
+class TopBar extends Component{
     constructor(){
         super();
-
     }
+    
+ 
 
     render(){
         const { onShowAddDialog } = this.props;
@@ -22,3 +25,10 @@ export default class TopBar extends Component{
         )
     }
 }
+
+
+function mapStateToProps(state,ownProps){ 
+    const props = state;
+    return props;
+}
+export default connect(mapStateToProps)(TopBar);

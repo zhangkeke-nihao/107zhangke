@@ -8,8 +8,7 @@ export default class DeleteView extends Component{
     }
 
     render(){
-        const {deleArr} = this.props;
-        const {onDeleteMultiple} = this.props;
+        const { deleArr,onDeleteMultiple } = this.props;
         if(!Array.isArray(deleArr)){
             return null;
         }
