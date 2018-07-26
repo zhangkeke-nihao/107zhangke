@@ -1,6 +1,7 @@
-import { ADD_LIST,CHANGE_STATUS,SET_TO_TOP } from '../const/ActionType'
+import { ADD_LIST,CHANGE_STATUS,CONTROL_ITEM,ON_INDEX } from '../const/ActionType'
 
-export function addDailog(title,descript,time ){
+//添加新消息
+export function addDailog( title,descript,time ){
     return {
         type: ADD_LIST,
         title,
@@ -9,19 +10,27 @@ export function addDailog(title,descript,time ){
     }
 }
 
-export function changeStatus( showDialog ){
+//获取index
+export function onIndex( index ){
     return {
-        type: CHANGE_STATUS,
-        showDialog,
+        type: ON_INDEX,
+        index,
     }
 }
 
-export function SetToTop(){
+//操作列表项（置顶，删除）
+export function controlItem( message ){
     return {
-        type: SET_TO_TOP,
-        // icon,
-        // title,
-        // descript,
-        // time,
+        type: CONTROL_ITEM,
+        message,
+    }
+}
+
+//改变状态
+export function changeStatus( showDialog,index ){
+    return {
+        type: CHANGE_STATUS,
+        showDialog,
+        index,
     }
 }

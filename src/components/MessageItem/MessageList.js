@@ -4,17 +4,16 @@ import MessageItemView from './MessageItem';
 export default class MessageList extends Component{
     constructor(){
         super();
-
     }
 
     render(){
-            const { message,onShowMoreDialog } = this.props;
+            const { message,todoActions } = this.props;
             const msg = message.map((item,idx) => {
                 return  <MessageItemView 
                           key={idx} 
-                          item={item} 
-                          index={idx} 
-                          onShowMoreDialog={onShowMoreDialog} 
+                          index={idx}
+                          item={item}  
+                          todoActions={todoActions} 
                         />
             })
             return msg;
