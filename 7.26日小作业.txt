@@ -1,0 +1,47 @@
+1、store：
+	在redux中，所有的数据都放在一个‘仓库’中，被称为‘store’-->在一个应用中只能有一个。
+	store本质是一颗状态树，保存了所有对象的数据和状态。任何UI组件都能直接从store访问特定对象的数据或状态。
+	创建store：引入createStore方法，引入rootReducer，通过const store = createStore(rootReducer)，就可以创建store了。
+2、action、dispatch：
+	想要更改数据或者状态，需要触发‘action’，它携带着要更改的信息（action就是要修改的那个对象）。这时‘store’就会分发一个dispatch方法，
+	目的是携带action，把它‘运送’到store。
+3、reducers：
+	reducers里面是通过action如何改变state的操作。action运送到store之后，会去到reducers里面，可以通过具体操作更改store中原来的数据或者状态 。
+4、 connect：
+	第一步说到：任何UI组件都能直接从store访问特定对象的数据或状态，组件从store里面访问数据需要connect，利用mapStateToProps（state）{}方法，
+	connect(mapStateToProps)(组件名)，组件就和store数据连接到一起了，方法返回值就是props，之后就可以通过例如this.props.message来操作数据。
+	同理，可以利用mapDispatchToProps(dispatch){return {todoActions: bindActionCreators(TodoActionCreators, dispatch) }}方法，
+	connect(mapDispatchToProps)(组件名），组件就可以使用dispatch方法了，因为返回的是一个dispatch方法的集合，所以在之后的操作中可以直接利用todoActions把
+	action运送到 store
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Actions 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。
+用法是通过 store.dispatch() 把 action 传到 store。
+
+
+
+Action 只是描述了有事情发生了这一事实，并没有指明应用如何更新 state。这是 reducer 要做的事情。
+Action就像leader，告诉我们应该做哪些事，并且给我们提供‘资源（就是上面说的数据）’，真正干活的是苦逼的Reducer。。
+
+上面章节中，我们学会了使用 action 来描述“发生了什么”，和使用 reducers 来根据 action 更新 state 的用法。
+
+Store 就是把它们联系到一起的对象。Store 有以下职责：
+
+    维持应用的 state；
+    提供 getState() 方法获取 state；
+    提供 dispatch(action) 方法更新 state；
+    通过 subscribe(listener) 注册监听器。
+Store提供了一些方法。让我们很方便的操作数据。
