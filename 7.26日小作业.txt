@@ -1,18 +1,18 @@
-1¡¢store£º
-	ÔÚreduxÖÐ£¬ËùÓÐµÄÊý¾Ý¶¼·ÅÔÚÒ»¸ö¡®²Ö¿â¡¯ÖÐ£¬±»³ÆÎª¡®store¡¯-->ÔÚÒ»¸öÓ¦ÓÃÖÐÖ»ÄÜÓÐÒ»¸ö¡£
-	store±¾ÖÊÊÇÒ»¿Å×´Ì¬Ê÷£¬±£´æÁËËùÓÐ¶ÔÏóµÄÊý¾ÝºÍ×´Ì¬¡£ÈÎºÎUI×é¼þ¶¼ÄÜÖ±½Ó´Óstore·ÃÎÊÌØ¶¨¶ÔÏóµÄÊý¾Ý»ò×´Ì¬¡£
-	´´½¨store£ºÒýÈëcreateStore·½·¨£¬ÒýÈërootReducer£¬Í¨¹ýconst store = createStore(rootReducer)£¬¾Í¿ÉÒÔ´´½¨storeÁË¡£
-2¡¢action¡¢dispatch£º
-	ÏëÒª¸ü¸ÄÊý¾Ý»òÕß×´Ì¬£¬ÐèÒª´¥·¢¡®action¡¯£¬ËüÐ¯´ø×ÅÒª¸ü¸ÄµÄÐÅÏ¢£¨action¾ÍÊÇÒªÐÞ¸ÄµÄÄÇ¸ö¶ÔÏó£©¡£ÕâÊ±¡®store¡¯¾Í»á·Ö·¢Ò»¸ödispatch·½·¨£¬
-	Ä¿µÄÊÇÐ¯´øaction£¬°ÑËü¡®ÔËËÍ¡¯µ½store¡£
-3¡¢reducers£º
-	reducersÀïÃæÊÇÍ¨¹ýactionÈçºÎ¸Ä±ästateµÄ²Ù×÷¡£actionÔËËÍµ½storeÖ®ºó£¬»áÈ¥µ½reducersÀïÃæ£¬¿ÉÒÔÍ¨¹ý¾ßÌå²Ù×÷¸ü¸ÄstoreÖÐÔ­À´µÄÊý¾Ý»òÕß×´Ì¬ ¡£
-4¡¢ connect£º
-	µÚÒ»²½Ëµµ½£ºÈÎºÎUI×é¼þ¶¼ÄÜÖ±½Ó´Óstore·ÃÎÊÌØ¶¨¶ÔÏóµÄÊý¾Ý»ò×´Ì¬£¬×é¼þ´ÓstoreÀïÃæ·ÃÎÊÊý¾ÝÐèÒªconnect£¬ÀûÓÃmapStateToProps£¨state£©{}·½·¨£¬
-	connect(mapStateToProps)(×é¼þÃû)£¬×é¼þ¾ÍºÍstoreÊý¾ÝÁ¬½Óµ½Ò»ÆðÁË£¬·½·¨·µ»ØÖµ¾ÍÊÇprops£¬Ö®ºó¾Í¿ÉÒÔÍ¨¹ýÀýÈçthis.props.messageÀ´²Ù×÷Êý¾Ý¡£
-	Í¬Àí£¬¿ÉÒÔÀûÓÃmapDispatchToProps(dispatch){return {todoActions: bindActionCreators(TodoActionCreators, dispatch) }}·½·¨£¬
-	connect(mapDispatchToProps)(×é¼þÃû£©£¬×é¼þ¾Í¿ÉÒÔÊ¹ÓÃdispatch·½·¨ÁË£¬ÒòÎª·µ»ØµÄÊÇÒ»¸ödispatch·½·¨µÄ¼¯ºÏ£¬ËùÒÔÔÚÖ®ºóµÄ²Ù×÷ÖÐ¿ÉÒÔÖ±½ÓÀûÓÃtodoActions°Ñ
-	actionÔËËÍµ½ store
+1ã€storeï¼š
+	åœ¨reduxä¸­ï¼Œæ‰€æœ‰çš„æ•°æ®éƒ½æ”¾åœ¨ä¸€ä¸ªâ€˜ä»“åº“â€™ä¸­ï¼Œè¢«ç§°ä¸ºâ€˜storeâ€™-->åœ¨ä¸€ä¸ªåº”ç”¨ä¸­åªèƒ½æœ‰ä¸€ä¸ªã€‚
+	storeæœ¬è´¨æ˜¯ä¸€é¢—çŠ¶æ€æ ‘ï¼Œä¿å­˜äº†æ‰€æœ‰å¯¹è±¡çš„æ•°æ®å’ŒçŠ¶æ€ã€‚ä»»ä½•UIç»„ä»¶éƒ½èƒ½ç›´æŽ¥ä»Žstoreè®¿é—®ç‰¹å®šå¯¹è±¡çš„æ•°æ®æˆ–çŠ¶æ€ã€‚
+	åˆ›å»ºstoreï¼šå¼•å…¥createStoreæ–¹æ³•ï¼Œå¼•å…¥rootReducerï¼Œé€šè¿‡const store = createStore(rootReducer)ï¼Œå°±å¯ä»¥åˆ›å»ºstoreäº†ã€‚
+2ã€actionã€dispatchï¼š
+	æƒ³è¦æ›´æ”¹æ•°æ®æˆ–è€…çŠ¶æ€ï¼Œéœ€è¦è§¦å‘â€˜actionâ€™ï¼Œå®ƒæºå¸¦ç€è¦æ›´æ”¹çš„ä¿¡æ¯ï¼ˆactionå°±æ˜¯è¦ä¿®æ”¹çš„é‚£ä¸ªå¯¹è±¡ï¼‰ã€‚è¿™æ—¶â€˜storeâ€™å°±ä¼šåˆ†å‘ä¸€ä¸ªdispatchæ–¹æ³•ï¼Œ
+	ç›®çš„æ˜¯æºå¸¦actionï¼ŒæŠŠå®ƒâ€˜è¿é€â€™åˆ°storeã€‚
+3ã€reducersï¼š
+	reducersé‡Œé¢æ˜¯é€šè¿‡actionå¦‚ä½•æ”¹å˜stateçš„æ“ä½œã€‚actionè¿é€åˆ°storeä¹‹åŽï¼Œä¼šåŽ»åˆ°reducersé‡Œé¢ï¼Œå¯ä»¥é€šè¿‡å…·ä½“æ“ä½œæ›´æ”¹storeä¸­åŽŸæ¥çš„æ•°æ®æˆ–è€…çŠ¶æ€ ã€‚
+4ã€ connectï¼š
+	ç¬¬ä¸€æ­¥è¯´åˆ°ï¼šä»»ä½•UIç»„ä»¶éƒ½èƒ½ç›´æŽ¥ä»Žstoreè®¿é—®ç‰¹å®šå¯¹è±¡çš„æ•°æ®æˆ–çŠ¶æ€ï¼Œç»„ä»¶ä»Žstoreé‡Œé¢è®¿é—®æ•°æ®éœ€è¦connectï¼Œåˆ©ç”¨mapStateToPropsï¼ˆstateï¼‰{}æ–¹æ³•ï¼Œ
+	connect(mapStateToProps)(ç»„ä»¶å)ï¼Œç»„ä»¶å°±å’Œstoreæ•°æ®è¿žæŽ¥åˆ°ä¸€èµ·äº†ï¼Œæ–¹æ³•è¿”å›žå€¼å°±æ˜¯propsï¼Œä¹‹åŽå°±å¯ä»¥é€šè¿‡ä¾‹å¦‚this.props.messageæ¥æ“ä½œæ•°æ®ã€‚
+	åŒç†ï¼Œå¯ä»¥åˆ©ç”¨mapDispatchToProps(dispatch){return {todoActions: bindActionCreators(TodoActionCreators, dispatch) }}æ–¹æ³•ï¼Œ
+	connect(mapDispatchToProps)(ç»„ä»¶åï¼‰ï¼Œç»„ä»¶å°±å¯ä»¥ä½¿ç”¨dispatchæ–¹æ³•äº†ï¼Œå› ä¸ºè¿”å›žçš„æ˜¯ä¸€ä¸ªdispatchæ–¹æ³•çš„é›†åˆï¼Œæ‰€ä»¥åœ¨ä¹‹åŽçš„æ“ä½œä¸­å¯ä»¥ç›´æŽ¥åˆ©ç”¨todoActionsæŠŠ
+	actionè¿é€åˆ° store
 
 
 
@@ -28,20 +28,3 @@
 
 
 
-Actions ÊÇ°ÑÊý¾Ý´ÓÓ¦ÓÃ´«µ½ store µÄÓÐÐ§ÔØºÉ¡£ËüÊÇ store Êý¾ÝµÄÎ¨Ò»À´Ô´¡£
-ÓÃ·¨ÊÇÍ¨¹ý store.dispatch() °Ñ action ´«µ½ store¡£
-
-
-
-Action Ö»ÊÇÃèÊöÁËÓÐÊÂÇé·¢ÉúÁËÕâÒ»ÊÂÊµ£¬²¢Ã»ÓÐÖ¸Ã÷Ó¦ÓÃÈçºÎ¸üÐÂ state¡£ÕâÊÇ reducer Òª×öµÄÊÂÇé¡£
-Action¾ÍÏñleader£¬¸æËßÎÒÃÇÓ¦¸Ã×öÄÄÐ©ÊÂ£¬²¢ÇÒ¸øÎÒÃÇÌá¹©¡®×ÊÔ´£¨¾ÍÊÇÉÏÃæËµµÄÊý¾Ý£©¡¯£¬ÕæÕý¸É»îµÄÊÇ¿à±ÆµÄReducer¡£¡£
-
-ÉÏÃæÕÂ½ÚÖÐ£¬ÎÒÃÇÑ§»áÁËÊ¹ÓÃ action À´ÃèÊö¡°·¢ÉúÁËÊ²Ã´¡±£¬ºÍÊ¹ÓÃ reducers À´¸ù¾Ý action ¸üÐÂ state µÄÓÃ·¨¡£
-
-Store ¾ÍÊÇ°ÑËüÃÇÁªÏµµ½Ò»ÆðµÄ¶ÔÏó¡£Store ÓÐÒÔÏÂÖ°Ôð£º
-
-    Î¬³ÖÓ¦ÓÃµÄ state£»
-    Ìá¹© getState() ·½·¨»ñÈ¡ state£»
-    Ìá¹© dispatch(action) ·½·¨¸üÐÂ state£»
-    Í¨¹ý subscribe(listener) ×¢²á¼àÌýÆ÷¡£
-StoreÌá¹©ÁËÒ»Ð©·½·¨¡£ÈÃÎÒÃÇºÜ·½±ãµÄ²Ù×÷Êý¾Ý¡£
