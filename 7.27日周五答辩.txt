@@ -1,0 +1,37 @@
+1、store：
+	store是redux提供的唯一数据源，可以称为一个‘数据仓库’，存储了整个应用的state。
+	但是store是只读的，redux并没有提供真正修改数据的方法，改变数据的唯一方法是触发dispatch（action）。	
+2、action
+	想要更改数据或者状态，需要‘action’，用于描述已发生事件的普通对象，它携带着要更改的信息。
+	简单来说，action就是“你干了一件什么事情”。但是单单讲了你干的事情，别人并不知道你干的这件事产生了什么效果，
+	于是有了一个专门负责描述某个行为对应产生某种效果的机构，叫做 reducer 
+3、reducer：
+	reducer里面是通过action如何改变state的操作。action运送到store之后，reducer可以通过具体操作更改store中原来的数据或者状态 。
+	reducer 只是一个接收state和action，并返回新的state的函数。
+
+	简单说，首先必须先定义好我们即将做的事情，也就是定义一个action，跟着，我们需要相对应地补充我们做的这件事要怎么影响原数据，
+	于是我们根据这个action补充了一个reducer，最后我们触发这个action：dispatch(action)，原数据就会根据reducer定义好的规则来更新自己了。
+4、 connect：
+	任何UI组件都能直接从store访问特定对象的数据或状态。利用connect把store数据传递给关联组件，通过mapStateToProps（state）{}方法，
+	然后connect(mapStateToProps)(组件名)，连接相关组件，组件就可以通过this.props取出数据了，然后就可以直接通过this.props去渲染页面了。
+
+	同理，可以利用mapDispatchToProps(dispatch){return {todoActions: bindActionCreators(TodoActionCreators, dispatch) }}把dispatch方法传过来，
+	bindActionCreators方法会跟action做一个绑定，把所有的action都放在一个容器里面，就不需要一个一个用dispatch了。
+	connect(mapDispatchToProps)(组件名），组件就可以使用dispatch方法了，因为返回的是一个dispatch方法的集合，所以在之后的操作中可以直接利用
+	todoActions.action方法就可以把action运送到 store
+5、combineReducers：
+	因为随着数据不断增多，为了降低数据的耦合性，我们可以编写不同的reducer来处理不同的数据，便于管理数据。
+	combineReducers就是用来合并reducer的。
+6、type定义为常量：唯一性；不能用定义为字符串，很容易写错
+
+
+
+
+
+
+
+
+
+
+
+
