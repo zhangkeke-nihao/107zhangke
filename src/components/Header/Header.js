@@ -10,7 +10,7 @@ export default class Header extends Component{
     renderHeadMsg() {
         const { fixedMsg,personalMsg } = this.props;
         const msg = Object.values(fixedMsg).map((item,idx) => {
-           return <div><span>{item}:{Object.values(personalMsg)[idx]}</span></div>
+           return <div><span>{item} : {Object.values(personalMsg)[idx]}</span></div>
         })
         return msg;
     }
