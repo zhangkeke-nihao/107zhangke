@@ -1,0 +1,60 @@
+li{
+    list-style: none;
+}
+.header-wrap{
+    margin-top:20px;
+    display: flex;
+    justify-content: start;
+    font-size:12px;
+}
+
+.header-content-left{
+    margin-top:20px;
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.header-content-left div{
+    width:200px;
+    height: 16px;
+    margin-right:35px;
+    margin-top:5px;
+    float: left;
+}
+.header-content-right{
+    margin-top:15px;
+}
+.header-content-right div{
+    margin-top:5px;
+    width:250px;
+}
+.header-content-right .remark{
+    margin-right:25px;
+}
+
+
+.ant-table-thead > tr > th{
+    background: #ccc;
+}
+
+.num span{
+    margin-right:30px; 
+    color:#000;
+}
+
+
+.ant-tabs-nav .ant-tabs-tab-active{
+    color:#ccc;
+}
+
+.head{
+    position: relative;
+    left:45px;
+    height:16px;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import data from '../reducers/data'
-import dialogStatus from '../reducers/dialog'
+import userMessage from '../reducers/userMessage'
+import tableMessage from '../reducers/tableMessage'
 
 export default combineReducers({
-  data,
-  dialogStatus,
+  userMessage,
+  tableMessage,
 });
 
 
