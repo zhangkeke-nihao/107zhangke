@@ -29,3 +29,12 @@ td{
 th {
     border:1px solid #bbb;
 }
+
+.Red{
+    color:red;
+    font-weight: bold;
+}
+.Orange{
+    color:orange;
+    font-weight: bold;
+}

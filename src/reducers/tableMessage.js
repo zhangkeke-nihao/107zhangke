@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'antd';
+
 const initState = {
   dataSource: [{
     key: '1',
@@ -82,26 +83,90 @@ columns: [{
     title: '上课率',
     dataIndex: 'classRate',
     key: 'classRate',
+    render:text=>{
+      let num1=parseInt(text.split("/")[0],10);
+      let num2=parseInt(text.split("/")[1],10);
+      let num=num1/num2;
+      if(num<0.8){
+        return <span className="Red">{text}</span>
+      }
+      else if(num>0.95){
+        return <span className="Orange">{text}</span>
+      }
+      else{
+        return <span>{text}</span>
+      }
+      }
   },
   {
     title: '作业提交率',
     dataIndex: 'submitRate',
     key: 'submitRate',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }
+      else if(num>95){
+        return <span className="Orange">{text}</span>
+      }
+      else{
+      return <span>{text}</span>
+      }
+      }
   },
   {
     title: '被点评情况',
     dataIndex: 'review',
     key: 'review',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }
+      else if(num>95){
+        return <span className="Orange">{text}</span>
+      }
+      else{
+        return <span>{text}</span>
+      }
+      }
   },
   {
     title: '打卡率',
     dataIndex: 'clock',
     key: 'clock',
+    render:text=>{
+      let num1=parseInt(text.split("/")[0],10);
+      let num2=parseInt(text.split("/")[1],10);
+      let num=num1/num2;
+      if(num<0.8){
+      return <span className="Red">{text}</span>
+      }
+      else if(num>0.95){
+      return <span className="Orange">{text}</span>
+      }
+      else{
+      return <span>{text}</span>
+      }
+      }
   },
   {
     title: '满意度',
     dataIndex: 'satisfaction',
     key: 'satisfaction',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+      return <span className="Red">{text}</span>
+      }
+      else if(num>95){
+      return <span className="Orange">{text}</span>
+      }
+      else{
+      return <span>{text}</span>
+      }
+      }
   },
 ],
 
