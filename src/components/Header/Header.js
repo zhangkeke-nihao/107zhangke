@@ -21,7 +21,7 @@ export default class Header extends Component{
             <div className="header-wrap">
                <Avatar size="large" src={require('../../image/icon.png')} style={{width:"100px",height:"100px"}}/>
             <div>               
-                <div className="head">三班人</div>
+                <span className="head">三班人</span>
                 <div className="header-content-left">
                     {this.renderHeadMsg()}
                 </div>
