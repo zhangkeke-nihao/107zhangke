@@ -19,7 +19,7 @@ li{
     width:200px;
     height: 16px;
     margin-right:35px;
-    margin-top:5px;
+    margin-top:10px;
     float: left;
 }
 .header-content-right{
@@ -49,9 +49,8 @@ li{
 }
 
 .head{
-    position: relative;
-    left:45px;
-    height:16px;
+     margin-left: 10px;
+     height:16px;
 }
 
 .nav{
