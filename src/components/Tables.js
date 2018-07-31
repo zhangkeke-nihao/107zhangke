@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
-
 import './TabBar/TabBar.css'
 import './Header/header.css'
-export default class TabBar extends Component{
+
+export default class Tables extends Component{
     constructor(){
         super();
     }
 
-
     render(){
-        const { dataSource,columns,dataSource2,columns2 } = this.props;
+        const { LessonsList,historyLessonsList,columns } = this.props;
+        console.log('LessonsList ',LessonsList)
+
         return (
             <div>
-                <div className="p1"><p>在学课程</p></div>
-                <Table dataSource={dataSource} columns={columns} />
-
-                <div className="p2"><p>历史数据</p></div>
-                <Table dataSource={dataSource2} columns={columns2} />
-                 
-            
+                <Table dataSource={historyLessonsList} columns={columns} title={() => '在学课程'} bordered />
+                <Table dataSource={historyLessonsList} columns={columns} title={() => '历史数据'} bordered />
             </div>
+           
         )
     }
 }
