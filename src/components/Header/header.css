@@ -19,29 +19,6 @@ li{
     margin-top:10px;
     float: left;
 }
- /* .header-content-left{
-    width: 500px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
-.header-content-left div{
-    width:200px;
-    height: 16px;
-    margin-right:35px;
-    margin-top:10px;
-    float: left;
-}
-.header-content-right{
-    margin-top:20px;
-}
-.header-content-right div{
-    margin-top:5px;
-    width:250px;
-}
-.header-content-right .remark{
-    margin-right:25px;
-} */ 
 
 .ant-table-thead > tr > th{
     background: #ccc;
@@ -58,9 +35,6 @@ li{
 }
 
 .head{
-    /* position: relative;
-    left:45px;
-    height:16px; */
     margin-left: 10px;
     height:16px;
 }

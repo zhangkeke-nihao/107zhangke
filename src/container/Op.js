@@ -3,17 +3,20 @@ import Header from '../components/Header/Header';
 import TabBar from '../components/TabBar/TabBar';
 import '../App.css';
 import { connect } from 'react-redux';
-import * as api from '../api/api';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../action';
+
 
 class Op extends Component {
 
-  
   componentDidMount(){   
-    const { dispatch } = this.props;
-    api.user_post(dispatch);
-    api.table_post(dispatch);
-
-    // const mid = '300210'
+    const { Actions } = this.props;
+    const mid = 1;
+    const id = 2;
+    Actions.fetchUserInfo(mid)
+    Actions.fetchLessonInfo(mid)
+    Actions.fetchStudentInfo(id)
+    Actions.fetchLearnInfo(id)
   }
  
 
@@ -27,7 +30,12 @@ class Op extends Component {
         <TabBar 
             LessonsList={tableMessage.LessonsList} 
             historyLessonsList={tableMessage.historyLessonsList} 
-            columns={tableColums.columns}
+            StudentList={tableMessage.StudentList}
+            LearnList={tableMessage.LearnList}
+            basicMsg={userMessage.basicMsg}
+            columns1={tableColums.columns1}
+            columns2={tableColums.columns2}
+            columns3={tableColums.columns3}
         />
       </div>
     );
@@ -40,11 +48,15 @@ function mapStateToProps(state){
   const {userMessage,tableMessage,tableColums} = state;
   const props = {userMessage,tableColums,tableMessage};
   return props;
-
-
 }  
 
-export default connect(mapStateToProps)(Op);
+const mapDispatchToProps = dispatch => {
+  return {
+    Actions: bindActionCreators(actionCreators, dispatch),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Op);
 
 
 

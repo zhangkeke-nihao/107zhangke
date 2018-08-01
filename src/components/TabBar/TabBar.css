@@ -1,34 +1,17 @@
 .button-box-left{
-    float: left;color:#000;
-   
+    float: left;
 }
 .button-box-right{
-    float: right;color:#000;
+    float: right;
 }
 .button-box-wrap{
     overflow: hidden;
     height: 50px;
-    color:#000;
 }
 
-
-p{
-    color:rgba(0, 0, 0, 0.65);
-    font-weight: bold;
-}
-.p2{
-    margin-top:20px;
-}
 .ant-pagination{
     display: none;
 }
-
-/* td{
-    border:1px solid #ccc;
-}
-th {
-    border:1px solid #bbb;
-} */
 
 .Red{
     color:red;
@@ -37,4 +20,20 @@ th {
 .Orange{
     color:orange;
     font-weight: bold;
+}
+
+.search-bar{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+
+.basicmsg{
+    text-align: center;
+    color:rgb(110, 108, 108);
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
