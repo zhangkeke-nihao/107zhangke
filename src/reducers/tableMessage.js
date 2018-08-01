@@ -4,7 +4,6 @@ const initState = {
     historyLessonsList:[],
     StudentList:[],
     LearnList:[],
-
     rawStudentList:[]
 }
 
@@ -16,7 +15,7 @@ export default function tableMessage(state = initState,action){
             return Object.assign({...state}, { LessonsList, historyLessonsList })
         case ActionTypes.FETCH_STUDENT_INFO_SUC:
             const StudentList = action.response.data;
-const rawStudentList = [].concat(StudentList);
+            const rawStudentList = [].concat(StudentList);
             return Object.assign({...state}, { StudentList,rawStudentList })
         case ActionTypes.FETCH_LEARN_INFO_SUC:
             const LearnList = action.response.data.list;

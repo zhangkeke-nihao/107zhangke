@@ -5,7 +5,7 @@ import '../App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../action';
-
+import { initStateColumns } from '../components/columns'
 
 class Op extends Component {
 
@@ -21,7 +21,7 @@ class Op extends Component {
  
 
   render() {
-    const {userMessage,tableMessage,tableColums} = this.props;
+    const {userMessage,tableMessage} = this.props;
     return (
       <div className="wrap">
         <Header 
@@ -33,9 +33,9 @@ class Op extends Component {
             StudentList={tableMessage.StudentList}
             LearnList={tableMessage.LearnList}
             basicMsg={userMessage.basicMsg}
-            columns1={tableColums.columns1}
-            columns2={tableColums.columns2}
-            columns3={tableColums.columns3}
+            columns1={initStateColumns.columns1}
+            columns2={initStateColumns.columns2}
+            columns3={initStateColumns.columns3}
         />
       </div>
     );
@@ -45,8 +45,8 @@ class Op extends Component {
 
 
 function mapStateToProps(state){
-  const {userMessage,tableMessage,tableColums} = state;
-  const props = {userMessage,tableColums,tableMessage};
+  const {userMessage,tableMessage} = state;
+  const props = {userMessage,tableMessage};
   return props;
 }  
 
