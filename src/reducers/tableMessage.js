@@ -1,9 +1,11 @@
 import * as ActionTypes from '../const/ActionType';
 const initState = {
-    LessonsList:'',
-    historyLessonsList:'',
-    StudentList:'',
-    LearnList:'',
+    LessonsList:[],
+    historyLessonsList:[],
+    StudentList:[],
+    LearnList:[],
+
+    rawStudentList:[]
 }
 
 export default function tableMessage(state = initState,action){
@@ -14,16 +16,17 @@ export default function tableMessage(state = initState,action){
             return Object.assign({...state}, { LessonsList, historyLessonsList })
         case ActionTypes.FETCH_STUDENT_INFO_SUC:
             const StudentList = action.response.data;
-            return Object.assign({...state}, { StudentList })
+const rawStudentList = [].concat(StudentList);
+            return Object.assign({...state}, { StudentList,rawStudentList })
         case ActionTypes.FETCH_LEARN_INFO_SUC:
             const LearnList = action.response.data.list;
             return Object.assign({...state}, { LearnList })
         case ActionTypes.CHANGE_TABLE_ITEM:
             console.log(action.value)
             const newStudentarr = [];
-            for(let i = 0;i < state.StudentList.length;i++){
-                if( state.StudentList[i].mid == action.value){
-                    newStudentarr.push(state.StudentList[i]);
+            for(let i = 0;i < state.rawStudentList.length;i++){
+                if( state.rawStudentList[i].mid == action.value){
+                    newStudentarr.push(state.rawStudentList[i]);
                 }
             }
             const newState = {...state};
