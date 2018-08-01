@@ -19,8 +19,7 @@ li{
     margin-top:10px;
     float: left;
 }
-/* .header-content-left{
-    /* margin-top:20px; 
+ /* .header-content-left{
     width: 500px;
     display: flex;
     justify-content: space-evenly;
@@ -42,7 +41,7 @@ li{
 }
 .header-content-right .remark{
     margin-right:25px;
-} */
+} */ 
 
 .ant-table-thead > tr > th{
     background: #ccc;

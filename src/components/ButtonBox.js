@@ -3,10 +3,6 @@ import { Button } from 'antd';
 import '../components/TabBar/TabBar.css'
 
 export default class ButtonBox extends Component{
-    constructor(){
-        super();
-    }
-
     render(){
         return (
                 <div className="button-box-wrap">

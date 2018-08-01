@@ -12,17 +12,17 @@ class Op extends Component {
     const { dispatch } = this.props;
     api.user_post(dispatch);
     api.table_post(dispatch);
+
+    // const mid = '300210'
   }
  
 
   render() {
     const {userMessage,tableMessage,tableColums} = this.props;
-    
-    console.log('tableMessage here',tableMessage);
     return (
       <div className="wrap">
         <Header 
-            msg={userMessage.msg}
+            userMsg={userMessage.userMsg}
         />
         <TabBar 
             LessonsList={tableMessage.LessonsList} 
@@ -39,9 +39,7 @@ class Op extends Component {
 function mapStateToProps(state){
   const {userMessage,tableMessage,tableColums} = state;
   const props = {userMessage,tableColums,tableMessage};
-
   return props;
-  console.log('columns再次：'+tableColums)
 
 
 }  

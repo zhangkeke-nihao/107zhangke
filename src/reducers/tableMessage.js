@@ -1,16 +1,16 @@
 import * as ActionTypes from '../const/ActionType';
 const initState = {
-    LessonsList:[],
-    historyLessonsList:[]
+    LessonsList:'',
+    historyLessonsList:''
 }
 
 export default function tableMessage(state = initState,action){
     switch(action.type){
         case ActionTypes.FETCH_GITHUB_TABLE_SUC:
-            let LessonsList = action.data.currentLessonsList;
-            let historyLessonsList = action.data.historyLessonsList;
-            console.log(LessonsList)
+            const LessonsList = action.data.currentLessonsList;
+            const historyLessonsList = action.data.historyLessonsList;
             return Object.assign({...state}, { LessonsList, historyLessonsList })
+            // return [...state,...action.data.currentLessonsList,...action.data.historyLessonsList]
         default:
             return state;
         }

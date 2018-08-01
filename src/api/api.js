@@ -14,9 +14,7 @@ export function user_post( next ) {
              mid:1,
          }, 
     }).then(res => {
-        console.log("data is here")
         console.log(res.data.data);
-        console.log("data is here")
         next({
             type:ActionTypes.FETCH_GITHUB_USER_SUC,
             data: res.data.data
@@ -42,9 +40,7 @@ export function table_post( next ) {
             mid:1,
         }, 
    }).then(res => {
-       console.log("data is here")
        console.log(res.data.data);
-       console.log("data is here")
        next({
         type: ActionTypes.FETCH_GITHUB_TABLE_SUC,
         data:res.data.data

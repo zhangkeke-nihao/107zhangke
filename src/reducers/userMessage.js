@@ -1,14 +1,20 @@
 import * as ActionTypes from '../const/ActionType';
 const initState = {
-    msg:[],
+    userMsg:''
 }
 
 export default function userMessage(state = initState,action){
     switch(action.type){
         case ActionTypes.FETCH_GITHUB_USER_SUC:
-            let msg = action.data;
-            return Object.assign({...state}, { msg })
+            const userMsg = action.data;
+            console.log('==============='+userMsg)
+            return Object.assign({...state}, { userMsg, })
+
+            // return {
+            //     ...state,
+            //     ...action.data,
+            // }
         default:
-        return state;
+            return state;
         }
 }

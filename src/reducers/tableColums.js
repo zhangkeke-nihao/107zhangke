@@ -8,7 +8,6 @@ columns: [{
     key: 'classInfo',
     align: 'center',
     render: text => {
-      console.log(text);
       return  <div>
                 <Icon type="exclamation-circle" />
                 <span>{text.name}</span>
@@ -42,8 +41,7 @@ columns: [{
     dataIndex: 'enterRate',
     key: 'enterRate',
     align: 'center',
-    render:
-    text=>{
+    render:text=>{
       let num1=parseInt(text.split("/")[0],10);
       let num2=parseInt(text.split("/")[1],10);
       let num=num1/num2;
@@ -54,8 +52,7 @@ columns: [{
       }else{
         return <span>{text}</span>
       }
-      }
-    // renderColor(text,type1)
+    }
   },
   {
     title: '作业提交率',
@@ -105,7 +102,7 @@ columns: [{
       }else{
         return <span>{text}</span>
       }
-      }
+    }
   },
   {
     title: '满意度',
@@ -125,51 +122,7 @@ columns: [{
   },
 ],
 
-columns2: [{
-    title: '班级',
-    dataIndex: 'class',
-    key: 'class',
-  }, {
-    title: '课程状态',
-    dataIndex: 'classStatus',
-    key: 'classStatus',
-  }, {
-    title: '开课时间',
-    dataIndex: 'startTime',
-    key: 'startTime',
-  },
-  {
-    title: '教学组负责人',
-    dataIndex: 'teacher',
-    key: 'teacher',
-  },
-  {
-    title: '上课率',
-    dataIndex: 'classRate',
-    key: 'classRate',
-  },
-  {
-    title: '作业提交率',
-    dataIndex: 'submitRate',
-    key: 'submitRate',
-  },
-  {
-    title: '被点评情况',
-    dataIndex: 'review',
-    key: 'review',
-  },
-  {
-    title: '打卡率',
-    dataIndex: 'clock',
-    key: 'clock',
-  },
-  {
-    title: '满意度',
-    dataIndex: 'satisfaction',
-    key: 'satisfaction',
-  },
-],
- }
+}
 
 export default function tableColums(state = initState,action){
   switch(action.type){
