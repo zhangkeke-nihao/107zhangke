@@ -1,0 +1,10 @@
+.button-box-left{
+    float: left;
+}
+.button-box-right{
+    float: right;
+}
+.button-box-wrap{
+    overflow: hidden;
+    height: 50px;
+}

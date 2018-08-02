@@ -36,7 +36,7 @@ export function fetchStudentInfo(id) {
     }
 }
 
-  export function fetchLearnInfo(id) {
+export function fetchLearnInfo(id) {
     return {
       SERVER_API: {
         type: ActionTypes.FETCH_LEARN_INFO,
@@ -48,6 +48,18 @@ export function fetchStudentInfo(id) {
     }
 }
 
+export function fetchSatisifyInfo(mid) {
+  return {
+    SERVER_API: {
+      type: ActionTypes.FETCH_SATISIFY_INFO,
+      endpoint: '/getSatisfiledList',
+      params: {
+          mid
+      }
+    }
+  }
+}
+
 
 export function changeTableItem(value){
   return {
@@ -55,5 +67,22 @@ export function changeTableItem(value){
     value,
   }
 }
+
+
+
+
+
+
+
+
+
+
+export function changeMailStatus(id){
+  return {
+    type:ActionTypes.CHANGE_MAIL_STAUS,
+    id,
+  }
+}
+
 
 

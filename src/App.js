@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import Op from './container/Op'
+import './App.css';
 import 'antd/dist/antd.css';
 
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-
-const store = configureStore();
-
 export default class App extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
+    const { children } = this.props
     return (
-      <Provider store={store}>
-        <Op />
-      </Provider>
-    );
+      <div className="wrap">
+        {children}
+      </div>
+      );
   }
 }
+

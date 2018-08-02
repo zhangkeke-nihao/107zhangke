@@ -1,0 +1,45 @@
+li{
+    list-style: none;
+}
+.header-wrap{
+    margin-top:20px;
+    display: flex;
+    justify-content: start;
+    font-size:12px;
+}
+
+.header-content{
+    margin-left:10px;
+    width: 800px;
+}
+.header-content div{
+    width:200px;
+    height: 16px;
+    margin-right:35px;
+    margin-top:10px;
+    float: left;
+}
+
+.ant-table-thead > tr > th{
+    background: #ccc;
+}
+
+.num span{
+    margin-right:30px; 
+    color:#000;
+}
+
+
+.ant-tabs-nav .ant-tabs-tab-active{
+    color:#ccc;
+}
+
+.head{
+    margin-left: 10px;
+    height:16px;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+}

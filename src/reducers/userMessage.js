@@ -1,7 +1,7 @@
 import * as ActionTypes from '../const/ActionType';
 const initState = {
-    userMsg:'',
-    basicMsg:''
+    userMsg:{},
+    basicMsg:{}
 }
 
 export default function userMessage(state = initState,action){
@@ -12,7 +12,6 @@ export default function userMessage(state = initState,action){
         case ActionTypes.FETCH_LEARN_INFO_SUC:
             const basicMsg = action.response.data.basic_info;
             return Object.assign({...state}, { basicMsg,})
-            console.log(state)
         default:
             return state;
         }
