@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Table } from 'antd';
 import { Icon } from 'antd';
 import { Popover,Button } from 'antd';
-import { Switch } from 'antd';
-import { Rate } from 'antd';
 import '../table.css'
 
 import { connect } from 'react-redux';
@@ -33,7 +31,7 @@ class SatisifyTable extends Component{
                 return <div>
                           <Popover content={`老师：${text.nick}; id：${text.mid}; 微信：${text.wxCode}`} >
                             <Button style={{border:'none',width:'10px'}}><Icon type="smile" /></Button>
-                        </Popover>
+                          </Popover>
                           <span>{text.nick}</span>
                        </div>
             }
@@ -60,27 +58,41 @@ class SatisifyTable extends Component{
             dataIndex: 'reply_status',
             key: 'reply_status',
             align: 'left',
-            render:(text,record) => {
+            render:(text,record,index) => {
                 const t = record;
+                const i = index;
                 if(text == 0){
-                    // return <Rate count={1} allowClear={false} character={'已回复'} style={{fontSize:16}}/>
-                    return <div onClick={() => Actions.changeMailStatus(t.reply_status)}>待回复</div>
+                    return <div onClick={() => Actions.changeMailStatus(t.reply_status,i)}>待回复</div>
                 }
                 if(text == 1){
-                    // return <Icon type="check" style={{color:'#FBDE14',fontSize:22}}/>
                     return  <div>
                                 <Icon type="mail" />
                                 <span>已回复</span>
                             </div>
                 }
             },
-           
           }]
-        const { SatisifyList } = this.props;
+        // const { satisifiedTable } = this.props;
+        
+        const { list, entities } = this.props
+        // console.log(list)
+        let newList = list;
+        if(list){
+          newList = list.map(t=>{
+            const satisfiled = entities.satisfiled[t];
+            return {
+              ...satisfiled,
+              class_info: entities.classes[satisfiled.class_info],
+              teacher_info: entities.teachers[satisfiled.teacher_info]
+            }
+          });
+        }
+    
+
 
         return (
             <div>
-                <Table dataSource={SatisifyList} columns={columns4} bordered />
+                <Table dataSource={newList} columns={columns4} bordered />
             </div>
            
         )
@@ -88,8 +100,8 @@ class SatisifyTable extends Component{
 }
 
 function mapStateToProps(state){
-    const {userMessage,tableMessage} = state;
-    const props = {userMessage,tableMessage};
+    const {satisifiedTable} = state;
+    const props = {satisifiedTable};
     return props;
 }  
   

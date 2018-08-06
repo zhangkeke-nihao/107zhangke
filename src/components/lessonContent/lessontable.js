@@ -7,13 +7,19 @@ import '../table.css'
 
 export default class LessonTable extends Component{
 
+
+
+
+    onRow =(record) => {
+      // const {roter,history} = this.props;
+      // return {
+      //   onClick:e =>{
+      //     history.push(`/lessonContent/${record.mid}`)
+      //   }
+      // }
+    }
     render(){
         const { LessonsList,historyLessonsList } = this.props;
-        // const content = (
-        //     <div>
-        //       {LessonsList.teacherInfo.id}
-        //     </div>
-        //   );
         const columns1 = [{
             title: '班级',
             dataIndex: 'classInfo',
@@ -44,7 +50,7 @@ export default class LessonTable extends Component{
             align:'center',
             render: text => {
               return  <div>
-                        <Popover content={`老师：${text.nick}; id：${text.mid}; 微信：${text.wxCode}`} >
+                        <Popover onClick={(e)=>{e.stopPropagation;}} content={`老师：${text.nick}; id：${text.mid}; 微信：${text.wxCode}`} >
                             <Button style={{border:'none',width:'10px'}}><Icon type="smile" /></Button>
                         </Popover>
                         <span>{text.nick}</span>
@@ -133,7 +139,7 @@ export default class LessonTable extends Component{
        
         return (
             <div>
-                <Table dataSource={LessonsList} columns={columns1} title={() => '在学课程'} bordered />
+                <Table dataSource={LessonsList} columns={columns1} title={() => '在学课程'} bordered onRow={this.onRow} />
                 <Table dataSource={historyLessonsList} columns={columns1} title={() => '历史数据'} bordered />
             </div>
            

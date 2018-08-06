@@ -4,11 +4,12 @@ const initState = {
     basicMsg:{}
 }
 
-export default function userMessage(state = initState,action){
+export default function userMessage(state = {},action){
     switch(action.type){
         case ActionTypes.FETCH_USER_INFO_SUC:
-            const userMsg = action.response.data;
-            return Object.assign({...state}, { userMsg, })
+            // const userMsg = action.response.data;
+            // return Object.assign({...state}, { userMsg, })
+            return { ...state, [action.mid]: { ...action.response.data } }
         case ActionTypes.FETCH_LEARN_INFO_SUC:
             const basicMsg = action.response.data.basic_info;
             return Object.assign({...state}, { basicMsg,})

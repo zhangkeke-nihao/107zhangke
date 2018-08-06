@@ -4,7 +4,6 @@ import { Icon } from 'antd'
 
 
 export default class ClassDetailTable extends Component{
-
     render(){
         const columns3 = [{
             title: '课程内容',
@@ -91,8 +90,8 @@ export default class ClassDetailTable extends Component{
               }
             }
           }]
+          
         const { LearnList } = this.props;
-
         return (
             <div>
                 <Table dataSource={LearnList} columns={columns3} bordered />

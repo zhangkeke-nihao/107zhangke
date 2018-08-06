@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { normalize } from 'normalizr';
+import * as Schema from '../schema'
 
 const API_DOMAIN = 'http://xly-wkop.xiaoniangao.cn';
 
@@ -29,7 +31,8 @@ export default store => next => action => {
   const {
     type,
     endpoint,
-    params
+    params,
+    normailzerFun
   } = action.SERVER_API;
 
   if (typeof type !== 'string') {
@@ -41,20 +44,24 @@ export default store => next => action => {
   if (typeof params !== 'object') {
     throw new Error('params shoudle be a object');
   }
-
+   const { SERVER_API, ...otherParams } = action;
   next({
-    type: `${type}_REQ`
+    type: `${type}_REQ`,
+    ...otherParams
   });
 
   return callServerApi(endpoint, params)
     .then(res => {
+      const response = typeof (normailzerFun) !== 'undefined' ? normailzerFun(res.data) : res.data;      
       next({
         type: `${type}_SUC`,
-        response: res.data
+        ...otherParams,
+        response: response
       });
     }).catch(err => {
       next({
         type: `${type}_FAI`,
+        ...otherParams,
         errMsg: err.errMsg
       });
     });

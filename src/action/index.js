@@ -1,4 +1,7 @@
 import * as ActionTypes from '../const/ActionType';
+import { normalize } from 'normalizr'
+import * as schemes from '../schema/index'
+
 
 export function fetchUserInfo(mid) {
   return {
@@ -18,9 +21,32 @@ export function fetchLessonInfo(mid) {
       type: ActionTypes.FETCH_LESSON_INFO,
       endpoint: '/getLessonInfo',
       params: {
-        mid
+        mid: mid
+      },
+      normailzerFun:response=>{
+       const current =  normalize(response.data.currentLessonsList, schemes.CURRENTLESSONLIST)
+       const history =  normalize(response.data.historyLessonsList, schemes.HISTORYLESSONLIST)
+       return {
+         current,
+         history
+       }
       }
+      
     }
+  }
+}
+
+export function fetchSatisifyInfo(mid) {
+  return {
+    SERVER_API: {
+      type: ActionTypes.FETCH_SATISIFY_INFO,
+      endpoint: '/getSatisfiledList',
+      params: {
+        mid: mid
+      },
+      normailzerFun:response=> normalize(response.data.list, schemes.SATISFILEDLIST)
+    },
+    mid: mid
   }
 }
 
@@ -48,18 +74,6 @@ export function fetchLearnInfo(id) {
     }
 }
 
-export function fetchSatisifyInfo(mid) {
-  return {
-    SERVER_API: {
-      type: ActionTypes.FETCH_SATISIFY_INFO,
-      endpoint: '/getSatisfiledList',
-      params: {
-          mid
-      }
-    }
-  }
-}
-
 
 export function changeTableItem(value){
   return {
@@ -68,21 +82,15 @@ export function changeTableItem(value){
   }
 }
 
-
-
-
-
-
-
-
-
-
-export function changeMailStatus(id){
+export function changeMailStatus(status,i){
   return {
     type:ActionTypes.CHANGE_MAIL_STAUS,
-    id,
+    status,
+    i
   }
 }
+
+
 
 
 

@@ -3,9 +3,6 @@ import './basicmsg.css'
 
 
 export default class BasicMsg extends Component{
-    
-   
-
     renderBasicMsg = () => {
         const { basicMsg } = this.props;
         

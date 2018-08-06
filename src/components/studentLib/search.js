@@ -32,8 +32,8 @@ class Search extends Component{
 
 
 function mapStateToProps(state){
-    const {userMessage,tableMessage} = state;
-    const props = {userMessage,tableMessage};
+    const {userMessage,classesTable} = state;
+    const props = {userMessage,classesTable};
     return props;
 }  
   

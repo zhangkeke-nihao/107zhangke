@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import '../App.css';
 import Search from '../components/studentLib/search'
 import StudentTable from '../components/studentLib/StudentTable'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../action';
 
 
 class StudenLib extends Component {
-  componentDidMount(){   
-    const { Actions } = this.props;
-    const id = 1
+  componentDidMount(){  
+    const { Actions,params } = this.props;
+    const { id } = params
     Actions.fetchStudentInfo(id)
   }
  
   render() {
-    const {tableMessage} = this.props;
-    console.log(tableMessage)
+    const { studentTables } = this.props;
     return (
       <div className="wrap">
           <Search />
-          <StudentTable StudentList={tableMessage.StudentList} />
+          <StudentTable StudentList={studentTables.StudentList} />
       </div>
     );
   }
@@ -28,17 +28,15 @@ class StudenLib extends Component {
 
 
 function mapStateToProps(state){
-    const {tableMessage} = state;
-    const props = {tableMessage};
+    const { studentTables } = state;
+    const props = { studentTables };
     return props;
-  }  
-  
+} 
 const mapDispatchToProps = dispatch => {
     return {
       Actions: bindActionCreators(actionCreators, dispatch),
     }
-  }
-  
+}
 export default connect(mapStateToProps,mapDispatchToProps)(StudenLib);
   
   

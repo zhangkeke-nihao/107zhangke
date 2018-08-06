@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
-import { Button } from 'antd';
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as messageActionsCreators from '../../action/index'
+import ButtonBox from '../button/ButtonBox';
 
 
 class StudentTable extends Component{
-    constructor(props) {
-        super(props)
-        this.handleConfirmAddClick = this.handleConfirmAddClick.bind(this)
-      }
-    handleConfirmAddClick = () => {
-        console.log(11111)
-        const { router } = this.props;
-        console.log(router)
-        router.goBack()
-    }
+    // onRow =(record) => {
+    //   const { router } = this.props.router;
+    //   return {
+    //     onClick:e =>{
+    //       browserhistory.push(`/lessonContent/${record.mid}`)
+    //     }
+    //   }
+    // }
 
     render(){
         const columns2 = [{
@@ -86,17 +84,8 @@ class StudentTable extends Component{
         
         return (
             <div>
-                <div className="button-box-wrap">
-                    <div className="button-box-left">
-                        <Button style={{border:'2px solid #bbb',color:'#000'}}>汇总</Button>
-                        <Button style={{background:'#ccc',margin:'0 10px',border:'2px solid #ccc',color:'#000'}}>摄影课</Button>
-                        <Button style={{border:'2px solid #bbb',color:'#000'}}>绘画课</Button>
-                    </div>
-                    <div className="button-box-right">
-                        <Button onClick={this.handleConfirmAddClick} className="button-box-right" style={{border:'2px solid #bbb',color:'#000'}}>返回</Button>
-                    </div>
-                </div>
-                <Table dataSource={StudentList} columns={columns2} bordered />
+                <ButtonBox />
+                <Table dataSource={StudentList} columns={columns2} onRow={this.onRow} bordered />
             </div>
         )
     }
@@ -108,11 +97,11 @@ function mapStateToProps(state) {
       ...state
     }
   }
-  function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
       messageActions: bindActionCreators(messageActionsCreators, dispatch),
     }
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(StudentTable)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentTable)
   

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router'
 import { Button } from 'antd'
+
 import ClassDetailTable from '../components/classDetail/ClassDetailTable'
 import BasicMsg from '../components/classDetail/BasicMsg'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../action';
@@ -11,20 +13,20 @@ import * as actionCreators from '../action';
 
 class ClassDetail extends Component {
   componentDidMount(){   
-    const { Actions } = this.props;
-    const id = 1
+    const { Actions} = this.props;
+    const id = 1;
     Actions.fetchLearnInfo(id)
   }
  
   render() {
-    const {userMessage,tableMessage} = this.props;
+    const {userMessage,classesTable} = this.props;
+    const { params } = this.props;
+    const { mid } = params;
     return (
     <div className="wrap">
-            <Link to="/lessonContent"> 
-                  <Button className="button-box-right" style={{border:'2px solid #bbb',color:'#000'}}>返回</Button>
-            </Link>
+            <Button onClick={this.props.router.goBack} className="button-box-right" style={{border:'2px solid #bbb',color:'#000'}}>返回</Button>
             <BasicMsg basicMsg={userMessage.basicMsg}/>
-            <ClassDetailTable LearnList={tableMessage.LearnList} />
+            <ClassDetailTable LearnList={classesTable.LearnList} />
       </div>
     );
   }
@@ -32,8 +34,8 @@ class ClassDetail extends Component {
 
 
 function mapStateToProps(state){
-    const {userMessage,tableMessage} = state;
-    const props = {userMessage,tableMessage};
+    const {userMessage,classesTable} = state;
+    const props = {userMessage,classesTable};
     return props;
   }  
   
