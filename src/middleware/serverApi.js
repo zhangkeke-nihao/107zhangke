@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { normalize } from 'normalizr';
-import * as Schema from '../schema'
 
 const API_DOMAIN = 'http://xly-wkop.xiaoniangao.cn';
 
@@ -44,7 +42,7 @@ export default store => next => action => {
   if (typeof params !== 'object') {
     throw new Error('params shoudle be a object');
   }
-   const { SERVER_API, ...otherParams } = action;
+  const { SERVER_API, ...otherParams } = action;
   next({
     type: `${type}_REQ`,
     ...otherParams

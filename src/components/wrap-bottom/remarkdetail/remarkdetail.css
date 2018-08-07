@@ -1,0 +1,7 @@
+.detail li{
+    list-style: none;
+    border-bottom:1px solid #ccc;
+}
+ul{
+    list-style: none;
+}

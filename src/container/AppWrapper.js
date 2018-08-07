@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Search from '../components/search/search'
+import HomeRemarkWrap from "./homeremarkwrap";
 
 export default class AppWrapper extends Component {
   render() {
-    const { children } = this.props
     return (
       <div className="wrap">
-        {children}
+        <Search />
+        <HomeRemarkWrap />
       </div>
       );
   }

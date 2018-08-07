@@ -1,34 +1,28 @@
 import { schema } from 'normalizr';
 
 
-const classes = new schema.Entity('classes', {}, {
-  idAttribute: 'id'
+const author = new schema.Entity('author', {}, {
+  idAttribute: 'mid'
 });
-const teacher = new schema.Entity('teachers',{},{
+const classes = new schema.Entity('classes',{},{
+  idAttribute:'id'
+})
+const comments = new schema.Entity('comments',{},{
   idAttribute:'id'
 })
 
-const satisfiled = new schema.Entity('satisfiled',{
-  class_info:classes,
-  teacher_info:teacher
-},{
-  idAttribute:'time'
+const teacher = new schema.Entity('teacher',{},{
+  idAttribute:'id'
 })
 
-const currentLessonsList = new schema.Entity('currentLessonsList',{
+const homeworkList = new schema.Entity('homeworkList',{
   classInfo:classes,
-  teacherInfo:teacher
-},{
-  idAttribute:'id'
-})
-const historyLessonsList = new schema.Entity('historyLessonsList',{
-  classInfo:classes,
-  teacherInfo:teacher
+  comments:[comments],
+  teacherInfo:teacher,
+  author:author
 },{
   idAttribute:'id'
 })
 
-export const CURRENTLESSONLIST = [ currentLessonsList ];
-export const HISTORYLESSONLIST = [ historyLessonsList ];
 
-export const SATISFILEDLIST = [ satisfiled ];
+export const HOMEWORKLIST = [ homeworkList ];

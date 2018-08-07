@@ -1,0 +1,11 @@
+.home-wrap{
+    display: flex;
+}
+.left{
+   width:60%;
+   float: left;
+}
+.right{
+    width:40%;
+    float: right;
+}

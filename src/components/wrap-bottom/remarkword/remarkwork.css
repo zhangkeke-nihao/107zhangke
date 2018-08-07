@@ -1,0 +1,12 @@
+.ant-input-suffix button{
+    background: #fff;
+    border:1px solid gray;
+}
+
+.ant-input-suffix button span{
+    color:#000;
+}
+
+.remark-wrap{
+    margin-top:10px;
+}
