@@ -22,7 +22,7 @@ const homeworkList = new schema.Entity('homeworkList',{
   author:author
 },{
   idAttribute:'id'
-})
+})  //中间的括号是扁平化的规则
 
 
-export const HOMEWORKLIST = [ homeworkList ];
+export const HOMEWORKLIST = [ homeworkList ]; //要扁平化的数据最外层就是一个数组

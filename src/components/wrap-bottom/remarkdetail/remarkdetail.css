@@ -1,7 +1,23 @@
 .detail li{
     list-style: none;
     border-bottom:1px solid #ccc;
+    padding:10px;
 }
-ul{
+.detail{
     list-style: none;
+    padding:0;
+    margin-left:5px;
+    border:1px solid #ccc;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between
+}
+.content > span{
+    margin-top:-5px;
+}
+
+.red{
+    color: red;
 }

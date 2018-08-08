@@ -6,32 +6,36 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../action/index';
 
+const icon = require('../../../image/5.jpg')
 
 class WorkWrap extends Component {
+
+  handleChangeStatus = () => {
+    const { item:{id},Actions } = this.props;
+    Actions.ChangeHomeWorkStatus(id);
+  }
   
   render() {
-    const { item,Actions,idx } = this.props;
+    const { item } = this.props;
     return (
       <div className="workdetail-wrap">
            <div>
-                <span>作业号：</span>
-                {/* <img src={} /> */}
+                <span>{item.id}</span><img src={icon} />
            </div>
            <div>
-                <span>作业：</span> 
+                <span>作业：{item.description}</span> 
                 <p>
-                    <span>学生id：</span>
-                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span>班级老师</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span>点评人：</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span>提交时间：</span>
+                    <span>{item.author.nick}mid:{item.author.mid}</span>
+                     &nbsp;&nbsp;
+                    <span>{item.classInfo.name}/{item.commentator}</span>
+                    &nbsp;&nbsp;
+                    <span>点评人:{item.teacherInfo.nick}</span>
+                    &nbsp;
+                    <span>提交时间:{item.time}</span>
                 </p>
            </div>
            <div>
-                佳作：
-                <Switch Checked onChange={(checked)=>{Actions.changeWorkStatus(checked)}} />
+                佳作：<Switch defaultChecked={item.isExcellent} onChange={this.handleChangeStatus} />
            </div>
       </div>
       );
@@ -50,5 +54,6 @@ return {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(WorkWrap);
+
 
 

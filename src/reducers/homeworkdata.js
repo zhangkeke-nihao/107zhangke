@@ -1,30 +1,43 @@
 import * as ActionTypes from '../const/ActionType';
 
-// const initState = {
-//     homeworkList:[],
-//     rawhomeworkList:[]
-// }
+const initState = {
+    teacherUnreview:[],
+    teacherReviewed:[],
+    allUnreview:[],
+    allReviewed:[],
+    filterMid:[]
+}
 
-export default function homeworkdata(state = [],action){
+export default function homeworkdata(state = initState,action){
     switch(action.type){
-        case ActionTypes.FETCH_HOMEWORK_INFO_SUC:
-            // const homeworkList = action.response.data;
-            // const rawhomeworkList = [].concat(homeworkList);
-            // return Object.assign({...state}, { homeworkList,rawhomeworkList });
+        case ActionTypes.FETCH_HOMEWORK_UNREVIEW_INFO_SUC:
+            return { 
+                ...state, 
+                teacherUnreview: action.response.result 
+            };
+        case ActionTypes.FETCH_HOMEWORK_REVIEWED_INFO_SUC: 
+            return { 
+                ...state, 
+                teacherReviewed: action.response.result 
+            };
+        case ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO_SUC: 
+            return { 
+                ...state, 
+                allUnreview: action.response.result 
+            };
+        case ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO_SUC: 
+            return { 
+                ...state, 
+                allReviewed: action.response.result 
+            };
 
-            const result = action.response.result;
-            return result;
 
-        // case ActionTypes.FILTER_STUDENT:
-        //     const newStudentarr = [];
-        //     for(let i = 0;i < state.rawhomeworkList.length;i++){
-        //         if( state.rawhomeworkList[i].author.mid == action.value || action.value == 0){
-        //             newStudentarr.push(state.rawhomeworkList[i]);
-        //         }
-        //     }
-        //     const newState = {...state};
-        //     newState.homeworkList = newStudentarr;
-        //     return newState
+            case ActionTypes.FILTER_HOMEWORK_ITEM:    //搜索
+                return {
+                    ...state,
+                    filterMid : action.value,
+                }
+    
         default:
             return state;
         }

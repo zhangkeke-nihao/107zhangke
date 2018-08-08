@@ -8,6 +8,15 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../action/index';
 
 
+handleFilter = (value) => {
+    const { Actions } = this.props;
+    Actions.FilterHomeworkItem(value);
+    
+}
+
+
+
+
 class Search extends Component{
 
     render(){
@@ -22,7 +31,8 @@ class Search extends Component{
                
                 <Search
                     placeholder="MID/学员名"
-                    onSearch={(value) => {Actions.changeTableItem(value)}}
+                    // onSearch={(value) => {Actions.FilterHomeworkItem(value)}}
+                    onSearch={() => this.handleFilter(value)}
                     style={{ width: 200 }}
                 />
             </div>
@@ -32,8 +42,7 @@ class Search extends Component{
 
 
 function mapStateToProps(state){
-    const { homeworkdata } = state;
-    return  { homeworkdata };
+    return state;
   } 
   
   const mapDispatchToProps = dispatch => {

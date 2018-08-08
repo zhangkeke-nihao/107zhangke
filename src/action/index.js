@@ -2,128 +2,110 @@ import * as ActionTypes from '../const/ActionType';
 import { normalize } from 'normalizr'
 import * as schemes from '../schema/index'
 
-
-// export function fetchUserInfo(mid) {
-//   return {
-//     SERVER_API: {
-//       type: ActionTypes.FETCH_USER_INFO,
-//       endpoint: '/getUserInfo',
-//       params: {
-//         mid
-//       }
-//     }
-//   }
-// }
-
-// export function fetchLessonInfo(mid) {
-//   return {
-//     SERVER_API: {
-//       type: ActionTypes.FETCH_LESSON_INFO,
-//       endpoint: '/getLessonInfo',
-//       params: {
-//         mid: mid
-//       },
-//       normailzerFun:response=>{
-//         const current =  normalize(response.data.currentLessonsList, schemes.LESSON)
-//         const history =  normalize(response.data.historyLessonsList, schemes.LESSON)
-//         return {
-//           current,
-//           history
-//        }
-//       },
-//       mid: mid
-//     }
-//   }
-// }
-
-// export function fetchSatisifyInfo(mid) {
-//   return {
-//     SERVER_API: {
-//       type: ActionTypes.FETCH_SATISIFY_INFO,
-//       endpoint: '/getSatisfiledList',
-//       params: {
-//         mid: mid
-//       },
-//       normailzerFun:response=> normalize(response.data.list, schemes.SATISFILEDLIST)
-//     },
-//     mid: mid
-//   }
-// }
-
-// export function fetchStudentInfo(id) {
-//     return {
-//       SERVER_API: {
-//         type: ActionTypes.FETCH_STUDENT_INFO,
-//         endpoint: '/getStudentList',
-//         params: {
-//           id
-//         },
-//         normailzerFun:response=> normalize(response.data, schemes.STUDENT)
-//       },
-//       id: id
-//     }
-// }
-
-// export function fetchLearnInfo(id) {
-//     return {
-//       SERVER_API: {
-//         type: ActionTypes.FETCH_LEARN_INFO,
-//         endpoint: '/getClassInfo',
-//         params: {
-//             id
-//         }
-//       }
-//     }
-// }
-
-
-// export function changeTableItem(value){
-//   return {
-//     type:ActionTypes.CHANGE_TABLE_ITEM,
-//     value,
-//   }
-// }
-
-// export function changeMailStatus(status,i){
-//   return {
-//     type:ActionTypes.CHANGE_MAIL_STAUS,
-//     status,
-//     i
-//   }
-// }
-
-
-
-
-
-export function fetchHomeWorkInfo(token,isReviewed) {
-  return {
-    SERVER_API: {
-      type: ActionTypes.FETCH_HOMEWORK_INFO,
-      endpoint: '/getHomeWork',
-      params: {
-        token,
-        isReviewed
-      },
-      normailzerFun:response=> normalize(response.data, schemes.HOMEWORKLIST)
+export function fetchUnReviewInfo(initParams) {
+    const {token,isReviewed} = initParams
+    let type = '';
+    console.log(token && !isReviewed)
+    console.log(token && isReviewed)
+    console.log(!token && !isReviewed)
+    console.log(!token && isReviewed)
+    if (token && !isReviewed) {
+        type = ActionTypes.FETCH_HOMEWORK_UNREVIEW_INFO;
+    } else if (token && isReviewed) {
+        type = ActionTypes.FETCH_HOMEWORK_REVIEWED_INFO;
+    } else if (!token && !isReviewed) {
+        type = ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO;
+    } else {
+        type = ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO;
     }
+    return {
+      SERVER_API: {
+        type,
+        endpoint: '/getHomeWork',
+        params: initParams,
+        normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+      }
+    }
+  }
+
+
+
+  // export function fetchUnReviewInfo(initParams) {
+  //   return {
+  //     SERVER_API: {
+  //       type: ActionTypes.FETCH_HOMEWORK_UNREVIEW_INFO,
+  //       endpoint: '/getHomeWork',
+  //       params: initParams,
+  //       normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+  //     }
+  //   }
+  // }
+
+// export function fetchReviewedInfo(initParams) {
+//   return {
+//     SERVER_API: {
+//       type: ActionTypes.FETCH_HOMEWORK_REVIEWED_INFO ,
+//       endpoint: '/getHomeWork',
+//       params: initParams,
+//       normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+//     }
+//   }
+// }
+
+// export function fetchAllUnReviewInfo(initParams) {
+//   return {
+//     SERVER_API: {
+//       type: ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO,
+//       endpoint: '/getHomeWork',
+//       params: initParams,
+//       normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+//     }
+//   }
+// }
+
+// export function fetchAllReviewedInfo(initParams) {
+//   return {
+//     SERVER_API: {
+//       type: ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO,
+//       endpoint: '/getHomeWork',
+//       params: initParams,
+//       normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+//     }
+//   }
+// }
+
+
+
+export function ChangeHomeWorkStatus(id){
+  return {
+    type:ActionTypes.CHANGE_HOMEWORK_STAUS,
+    id,
   }
 }
 
 
-export function changeTableItem(value){
+export function FilterHomeworkItem(value){
   return {
-    type:ActionTypes.FILTER_STUDENT,
+    type:ActionTypes.FILTER_HOMEWORK_ITEM,
+    value,
+  }
+}
+
+
+export function ChangeRejectStatus(id){
+  return {
+    type:ActionTypes.CHANGE_REJECT_STATUS,
+    id,
+  }
+}
+
+export function sendReview(value){
+  return {
+    type:ActionTypes.SEND_REVIEW,
     value,
   }
 }
 
 
 
-export function changeWorkStatus(status,i){
-  return {
-    type:ActionTypes.CHANGE_WORK_STAUS,
-    status,
-    i
-  }
-}
+
