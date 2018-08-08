@@ -17,9 +17,9 @@ class AppWrapper extends Component {
       homeworkdata
     } = this.props;
 
-    homeworkdata.filterMid
-
     
+
+
     return (
       <div className="wrap">
         <Search homeworkdata={homeworkdata}/>

@@ -8,11 +8,11 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../action/index';
 
 
-handleFilter = (value) => {
-    const { Actions } = this.props;
-    Actions.FilterHomeworkItem(value);
-    
-}
+// handleFilter = (value) => {
+//     const { Actions } = this.props;
+//     Actions.FilterHomeworkItem(value);
+
+// }
 
 
 
@@ -31,8 +31,8 @@ class Search extends Component{
                
                 <Search
                     placeholder="MID/学员名"
-                    // onSearch={(value) => {Actions.FilterHomeworkItem(value)}}
-                    onSearch={() => this.handleFilter(value)}
+                    onSearch={(value) => {Actions.FilterHomeworkItem(value)}}
+                    // onSearch={() => this.handleFilter(value)}
                     style={{ width: 200 }}
                 />
             </div>
