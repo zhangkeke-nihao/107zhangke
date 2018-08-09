@@ -99,10 +99,11 @@ export function ChangeRejectStatus(id){
   }
 }
 
-export function sendReview(value){
+export function sendReview(json,homeworkId){
   return {
     type:ActionTypes.SEND_REVIEW,
-    value,
+    json,
+    homeworkId
   }
 }
 

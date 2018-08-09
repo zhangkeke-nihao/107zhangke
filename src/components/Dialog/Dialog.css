@@ -1,0 +1,148 @@
+*{margin:0;padding:0}
+
+.dailog-wrap{
+    margin:40px auto;
+    position: relative;
+}
+.dailog-wrap .dailog-nav{
+    text-align: center;
+    height:50px;
+    line-height: 50px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background:#eee;
+    margin-top:10px;
+    color:#000;
+    font-size:18px;
+}
+.dailog-top{
+    margin:40px;
+}
+p{
+    font-size:18px;
+    color:#000;
+}
+.dailog-mask{
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.4);
+    transform: translateY(100%)
+}
+.dailog-showMask{
+    transform: translateY(0)
+}
+.dailog-hideMask{
+    opacity: 0;
+}
+
+
+.dailog-menu{
+    position: fixed;
+    left:30%;
+    right: 25%;
+    bottom: 45%;
+    background: #eee;
+    font-size: 18px;
+    color: #000;
+    transition: transfrom .3s linear;
+    transform: translateY(100%);
+}
+.dailog-menuAndriod{
+    width: 30%;
+    position: fixed;
+    left:30%;
+    right: 50%;
+    bottom: 50%;
+    background: #eee;
+    font-size: 18px;
+    color: #000;
+    transition: transfrom .3s linear;
+    transform: translateY(100%);
+}
+.dailog-showMenu{
+    transform: translateY(0);
+}
+
+.dailog-title{
+    background: #fff;
+    padding:15px 10px 0 10px;
+    text-align: center;
+    color: #000;
+    font-size:18px;
+}
+.title-andriod{
+    text-align: left;
+}
+.dailog-content{
+    padding: 10px 30px;
+    width:100%;
+    font-size: 16px;
+    color:gray;
+    background: #fff;
+}
+.only-content{
+    padding: 30px;
+}
+.dailog-btn-wrap{
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding:10px 25px; 
+    text-align: center;
+    border-right: 1px solid #e5e5e5;
+}
+.dailog-btn:nth-last-child(1){
+    color:rgb(25, 194, 25);
+    /* border-left:1px solid #e5e5e5;
+    padding-left:60px; */
+}
+
+.dailog-bot{
+    padding: 10px;
+    text-align: center;
+    color:rgb(25, 194, 25)
+}
+
+.dailog-btn-andriod{
+    justify-content: flex-end;
+    padding:10px;  
+}
+.dailog-btn-andriod .dailog-btn{
+    margin-right: 20px;
+}
+
+
+
+
+
+/* 
+.dailog-btn-andriod{
+    position: absolute;
+    top:50%;
+    text-align: left;
+    text-indent: 10px;
+} */
+
+.dailog-divider {
+    position: relative;
+}
+.dailog-divider:after{
+    position: absolute;
+    content: '';
+    height: 1px;
+    bottom:0;
+    left: 0;
+    right: 0;
+    background: #e5e5e5;
+    transform: scaleY(0.5) 
+} 
+/* .dailog-btn-concle{
+    position: relative;
+    margin-top:5px;
+    background: #fff;
+    padding:10px;
+    text-align: center;
+} */

@@ -32,12 +32,12 @@ export default function homeworkdata(state = initState,action){
             };
 
 
-            case ActionTypes.FILTER_HOMEWORK_ITEM:    //搜索
-                return {
-                    ...state,
-                    filterMid : action.value,
-                }
-    
+        case ActionTypes.FILTER_HOMEWORK_ITEM:    //搜索
+            return {
+                ...state,
+                filterMid : action.value,
+            }
+        
         default:
             return state;
         }

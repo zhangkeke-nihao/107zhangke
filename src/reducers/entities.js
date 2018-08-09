@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import * as ActionTypes from '../const/ActionType'
-import Item from '../../node_modules/antd/lib/list/Item';
 
 function author (state = {},action){
   switch(action.type){
@@ -70,10 +69,6 @@ function comments (state = {},action){
       };
     }
 
-    case ActionTypes.SEND_REVIEW:{
-      console.log(action.value)
-    }
-
     case ActionTypes.CHANGE_REJECT_STATUS:{   //退回
       const newState =  {
         ...state,
@@ -87,12 +82,17 @@ function comments (state = {},action){
       return newState
     }
     case ActionTypes.SEND_REVIEW:{    //发送显示
-      console.log(action.value);
-      const newState1 = {
+      const newState = {
         ...state,
-        
+        [action.json.id]:action.json
       }
+      console.log(newState)
+      return newState
     }
+
+
+
+
     default:
       return state;
   }
@@ -105,25 +105,38 @@ function homeworklist (state = {},action){
     case ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO_SUC: 
     case ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO_SUC:
     {
-      const entities =  action.response.entities;
-      const results = action.response.result; 
-      return {
-        ...state,
-        ...entities.homeworkList,
-        results
-      };
+        const entities =  action.response.entities;
+        const results = action.response.result; 
+        return {
+          ...state,
+          ...entities.homeworkList,
+          ...entities.comments,
+          results
+        };
     }
 
     case ActionTypes.CHANGE_HOMEWORK_STAUS:   //改变作业状态（是否为佳作）
-      const newStates = {
-        ...state,
-        [action.id]: {
-                    ...state[action.id],
-                    isExcellent: !state[action.id].isExcellent
-                }
-      };
-      console.log(newStates)
-      return newStates;
+        const newStates = {
+          ...state,
+          [action.id]: {
+                      ...state[action.id],
+                      isExcellent: !state[action.id].isExcellent
+                  }
+        };
+        console.log(newStates)
+        return newStates;
+
+
+    case ActionTypes.SEND_REVIEW:   //发送
+        const id = action.json.id;
+        const homeworkId = action.homeworkId;
+        const newState = {
+          ...state,
+          [homeworkId]:{
+            ...state[homeworkId],
+            comments:[id].concat(state[homeworkId].comments)}
+        }
+        return newState
 
 
 
