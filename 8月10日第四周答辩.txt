@@ -1,15 +1,15 @@
-  ���ݱ�ƽ�� ��
+  数据扁平化 ：
 
-  	�����Ƕ�׵����ݳ�ȡ�����������������ųɡ�һ�������ݣ�����֮������ݽ��д�����ʱ��Ϳ���ֱ��ͨ����ȡ������ĳ�����ݵ��������в����ˣ�
-	����Ҫһ��һ���������ң�����ȥ�ܶ�����Ĺ��̡�
+  	把深层嵌套的数据抽取出来并设置主键，排成‘一级’数据，这样之后对数据进行处理的时候就可以直接通过抽取出来的某条数据的主键进行操作了，
+	不需要一级一级的往下找，会少去很多遍历的过程。
+	
+  	数据扁平化就是在从服务器获取数据后，先对数据进行扁平化处理，然后将处理结果返回到reducer，之后再将state传入界面进行渲染。
+  	扁平化的过程就是先在schema中定义你想要的entity数据结构。然后在中间件中引入normalize方法，这个方法在action中根据需求具体定义。然后reducer进行数据处理，
+  	数据分成entities和result，entities就是扁平化后的数据，也可以理解为公共的数据，result是entities数据中的主键所组成的数组。entities和result是同一层级的。
+  	界面渲染时，将reducer中的entities和result一起传入组件中。渲染时，只需将所需数据的result找到，map主键数组即可。
 
-  	���ݱ�ƽ�������ڴӺ�̨��ȡ���ݺ��ȶ����ݽ��б�ƽ��������Ȼ�󽫴���������ص�reducer��֮���ٽ�state������������Ⱦ��
-  	��ƽ���Ĺ��̾�������schema�ж�������Ҫ��entity���ݽṹ��Ȼ�����м��������normalize���������������action�и���������嶨�塣Ȼ��reducer�������ݴ�����
-  	���ݷֳ�entities��result��entities���Ǳ�ƽ��������ݣ�Ҳ��������Ϊ���������ݣ�result��entities�����е���������ɵ����顣entities��result��ͬһ�㼶�ġ�
-  	������Ⱦʱ����reducer�е�entities��resultһ��������С���Ⱦʱ��ֻ�轫�������ݵ�result�ҵ���map�������鼴�ɡ�
-
-   �����װ��
-   	Ҫ����ȷ����ӿڡ�������ͨ����Щ���Ի��߷������ı������Ч�����������װ�ú�ֻ��Ҫ���Ĵ�����������ù�����ڲ���ôʵ�֣���������ҳ����Ⱦ����˿��Խ�һЩ��ʼ��
-   	state���ʹ���ķ������ڸ�����ϣ������е�setstate�������ڸ�����ж��壬ͨ��props����������������ֻ��Ҫ����state�͵��ø�����������С������޸�ʱֻ���޸ĸ�������ɡ�
+   组件封装：
+   	要先明确对外接口。即可以通过哪些属性或者方法来改变组件的效果。当组件封装好后，只需要关心传入参数，不用管组件内部怎么实现，数据驱动页面渲染。因此可以将一些初始的
+   	state，和传入的方法放在父组件上，即所有的setstate方法都在父组件中定义，通过props传入子组件，子组件只需要接收state和调用父组件方法就行。后期修改时只需修改父组件即可。
 
 
