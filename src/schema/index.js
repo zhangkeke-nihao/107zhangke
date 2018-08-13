@@ -1,29 +1,27 @@
 import { schema } from 'normalizr';
 
 
-const author = new schema.Entity('author', {}, {
+const child = new schema.Entity('child', {}, {
   idAttribute: 'mid'
 });
-const classes = new schema.Entity('classes',{},{
-  idAttribute:'id'
-})
-const comments = new schema.Entity('comments',{},{
-  idAttribute:'id'
-})
-
-const teacher = new schema.Entity('teacher',{},{
+const department = new schema.Entity('department',{
+  child:[child],
+},{
   idAttribute:'id'
 })
 
-const homeworkList = new schema.Entity('homeworkList',{
-  classInfo:classes,
-  comments:[comments],
-  teacherInfo:teacher,
-  author:author
+const product = new schema.Entity('product',{
+  child:[child],
 },{
   idAttribute:'id'
 })  
 //中间的括号是扁平化的规则
 
+const newList = new schema.Entity('newList',{
+  department:[department],
+  product:[product]
+},{
+  idAttribute:'id'
+})
 
-export const HOMEWORKLIST = [ homeworkList ]; //要扁平化的数据最外层就是一个数组
+export const newList = { newList }; //要扁平化的数据最外层就是一个数组

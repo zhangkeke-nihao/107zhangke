@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import homeworkdata from './homeworkdata'
-import entities from './entities'
+import reviewtreedata from './reviewtreedata'
+import sureadd from './sureadd'
+import product from './product'
 
 export default combineReducers({
-  homeworkdata,
-  entities
+  reviewtreedata,
+  sureadd,
+  product
 });
 
 

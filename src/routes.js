@@ -1,20 +1,16 @@
-import ActionSheetWrap from './container/ActionSheetWrap'
-import DialogWrap from './container/DialogWrap'
-import ProgressWrap from './container/ProgressWrap'
-import SliderWrap from './container/SliderWrap'
-import SwitchWrap from './container/SwitchWrap'
-import AppWrap from './container/AppWrap'
+import LessonContent from './container/LessonContent'
+import ClassDetail from './container/classDetail'
+import StudenLib from './container/studentLib'
+import AppWrapper from './container/AppWrapper'
+
 const routes = [{
     path: '/',
-    component: AppWrap,
-    indexRoute: { component: ActionSheetWrap },
+    component: AppWrapper,
+    indexRoute: { component: StudenLib },
     childRoutes: [
-      { path: 'dialogWrap', component: DialogWrap },
-      { path: 'progressWrap', component: ProgressWrap },
-      { path: 'sliderWrap', component: SliderWrap },
-      { path: 'switchWrap', component: SwitchWrap },
-      
-
+      { path: 'studenLib', component: StudenLib },
+      { path: 'lessonContent/:mid', component: LessonContent },
+      { path: 'classDetail', component: ClassDetail },
     ]
 }]
 

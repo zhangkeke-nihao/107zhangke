@@ -1,32 +1,83 @@
 import * as ActionTypes from '../const/ActionType';
-import { normalize } from 'normalizr'
-import * as schemes from '../schema/index'
+import initState from '../reducers/data'
 
-export function fetchUnReviewInfo(initParams) {
-    const {token,isReviewed} = initParams
-    let type = '';
-    console.log(token && !isReviewed)
-    console.log(token && isReviewed)
-    console.log(!token && !isReviewed)
-    console.log(!token && isReviewed)
-    if (token && !isReviewed) {
-        type = ActionTypes.FETCH_HOMEWORK_UNREVIEW_INFO;
-    } else if (token && isReviewed) {
-        type = ActionTypes.FETCH_HOMEWORK_REVIEWED_INFO;
-    } else if (!token && !isReviewed) {
-        type = ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO;
-    } else {
-        type = ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO;
-    }
-    return {
-      SERVER_API: {
-        type,
-        endpoint: '/getHomeWork',
-        params: initParams,
-        normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
-      }
-    }
+export function gettreenodeid(id){
+  return {
+    type:ActionTypes.TREENODE_OPEN_MESSAG,
+    id,
+    // normailzerFun:initState => normalize(initState, schemes.treeList)
   }
+}
+
+export function suremessage(mid){
+  return {
+    type:ActionTypes.SURE_MESSAGE,
+    mid,
+  }
+}
+
+
+
+export function canclemessage(mid){
+  return {
+    type:ActionTypes.CANCLE_MESSAGE,
+    mid,
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { normalize } from 'normalizr'
+// import * as schemes from '../schema/index'
+
+// export function fetchUnReviewInfo(initParams) {
+//     const {token,isReviewed} = initParams
+//     let type = '';
+//     console.log(token && !isReviewed)
+//     console.log(token && isReviewed)
+//     console.log(!token && !isReviewed)
+//     console.log(!token && isReviewed)
+//     if (token && !isReviewed) {
+//         type = ActionTypes.FETCH_HOMEWORK_UNREVIEW_INFO;
+//     } else if (token && isReviewed) {
+//         type = ActionTypes.FETCH_HOMEWORK_REVIEWED_INFO;
+//     } else if (!token && !isReviewed) {
+//         type = ActionTypes.FETCH_HOMEWORK_ALLUNREVIEW_INFO;
+//     } else {
+//         type = ActionTypes.FETCH_HOMEWORK_ALLREVIEWED_INFO;
+//     }
+//     return {
+//       SERVER_API: {
+//         type,
+//         endpoint: '/getHomeWork',
+//         params: initParams,
+//         normailzerFun:response => normalize(response.data, schemes.HOMEWORKLIST)
+//       }
+//     }
+//   }
 
 
 
@@ -76,36 +127,36 @@ export function fetchUnReviewInfo(initParams) {
 
 
 
-export function ChangeHomeWorkStatus(id){
-  return {
-    type:ActionTypes.CHANGE_HOMEWORK_STAUS,
-    id,
-  }
-}
+// export function ChangeHomeWorkStatus(id){
+//   return {
+//     type:ActionTypes.CHANGE_HOMEWORK_STAUS,
+//     id,
+//   }
+// }
 
 
-export function FilterHomeworkItem(value){
-  return {
-    type:ActionTypes.FILTER_HOMEWORK_ITEM,
-    value,
-  }
-}
+// export function FilterHomeworkItem(value){
+//   return {
+//     type:ActionTypes.FILTER_HOMEWORK_ITEM,
+//     value,
+//   }
+// }
 
 
-export function ChangeRejectStatus(id){
-  return {
-    type:ActionTypes.CHANGE_REJECT_STATUS,
-    id,
-  }
-}
+// export function ChangeRejectStatus(id){
+//   return {
+//     type:ActionTypes.CHANGE_REJECT_STATUS,
+//     id,
+//   }
+// }
 
-export function sendReview(json,homeworkId){
-  return {
-    type:ActionTypes.SEND_REVIEW,
-    json,
-    homeworkId
-  }
-}
+// export function sendReview(json,homeworkId){
+//   return {
+//     type:ActionTypes.SEND_REVIEW,
+//     json,
+//     homeworkId
+//   }
+// }
 
 
 
