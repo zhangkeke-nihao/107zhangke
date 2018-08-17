@@ -1,0 +1,27 @@
+
+/* 游戏说明 */
+.game_info_left {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.game_restart {
+    float: right;
+    display: inline-block;
+    background: #8f7a66;
+    border-radius: 3px;
+    padding: 0 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    text-align: center;
+}
+.game_infor::after {
+    content: "";
+    display: block;
+    clear: both;
+}

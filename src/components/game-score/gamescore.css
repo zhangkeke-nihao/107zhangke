@@ -1,0 +1,72 @@
+/* eslint-disable */
+/* 头部 */
+.header::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.title{
+    float: left;
+    margin: 0;
+    font-size: 80px;
+    font-weight: bold;
+    color: #776e65;
+}
+.score_container{
+    float: right;
+    margin-top:20px; 
+}
+.scores,.bestScore{
+    position: relative;
+    display: inline-block;
+    padding: 10px 5px 0 5px;
+    margin-right: 5px;
+    background: #bbada0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+.scores::before {
+    content: "Scores";
+}
+.bestScore::before {
+    content: "Best Score";
+}
+.scores::before, .bestScore::before {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #eee4da;
+}
+.scores::before{
+    width: 80px;
+}
+
+
+
+/* 分数的效果 */
+@-webkit-keyframes 'scoreAddition' {
+    from {
+        opacity: 1;
+        top: 25px;
+    }
+    to {
+        opacity: 0;
+        top: -25px;
+    }
+
+}
+.scores .score-addition, .bestScore .score-addition {
+    position: absolute;
+    right: 37px;
+    color: red;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: bold;
+    color: rgba(119, 110, 101, 0.9);
+    z-index: 100;
+    -webkit-animation: scoreAddition 600ms ease-in;
+}
+

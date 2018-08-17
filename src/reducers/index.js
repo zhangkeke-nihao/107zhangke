@@ -1,13 +1,9 @@
-import { combineReducers } from 'redux'
-import reviewtreedata from './reviewtreedata'
-import sureadd from './sureadd'
-import product from './product'
+import { combineReducers } from 'redux';
+import { score } from './score';
+import { gamedata } from './gamedata';
 
 export default combineReducers({
-  reviewtreedata,
-  sureadd,
-  product
+  score,
+  gamedata
 });
-
-
 
