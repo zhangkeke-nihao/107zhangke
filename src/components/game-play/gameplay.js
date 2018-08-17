@@ -5,21 +5,23 @@ import './gameplay.css';
 
 export default class GamePlay extends Component {
   state = { };
+  onTouchMove = e => {
+    e.preventDefault();
+  }
   onTouchStart = e => {
-    console.log(e);
+    e.preventDefault();
     this.startX = e.changedTouches[0].clientX;
     this.startY = e.changedTouches[0].clientY;
     // console.log(this.startX);
     // console.log(this.startY);
   }
   onTouchEnd = e => {
+    e.preventDefault();
     const { Actions } = this.props;
     this.endX = e.changedTouches[0].clientX;
     this.endY = e.changedTouches[0].clientY;
     const x = this.endX - this.startX;
     const y = this.endY - this.startY;
-    console.log(x);
-    // console.log(y);
     if (x < y) {
       if (y > 0) {
         Actions.movedown(3);
@@ -52,7 +54,7 @@ export default class GamePlay extends Component {
   }
   render() {
     return (
-      <div className="game_container" onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd}>
+      <div className="game_container" onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} onTouchMove={this.onTouchMove}>
         {this.renderGamePlayItem()}
       </div>
     );
