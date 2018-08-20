@@ -47,50 +47,6 @@
 
 
 /* 分数的效果 */
-/* @-webkit-keyframes scoreAdditiontrue {
-    from {
-        opacity: 1;
-        top: 25px;
-    }
-    to {
-        opacity: 0;
-        top: -100px;
-    }
-}
-@-webkit-keyframes scoreAdditionfalse {
-    from {
-        opacity: 1;
-        top: 25px;
-    }
-    to {
-        opacity: 0;
-        top: -100px;
-    }
-}
-.score_container .score-addition_true{
-    display: inline-block;
-    position: absolute; 
-    top:50px;
-    right:0;
-    font-size: 14px;
-    font-weight: bold;
-    color: rgba(99, 60, 80, 0.9);
-    z-index: 100;
-    -webkit-animation: scoreAdditiontrue 800ms ease-in;
-    animation-fill-mode: forwards;
-}
-.score_container .score-addition_false{
-    display: inline-block;
-    position: absolute; 
-    top:50px;
-    right:0;
-    font-size: 14px;
-    font-weight: bold;
-    color: rgba(99, 60, 80, 0.9);
-    z-index: 100;
-    -webkit-animation: scoreAdditionfalse 800ms ease-in;
-    animation-fill-mode: forwards;
-} */
 @-webkit-keyframes scoreAddition {
     from {
         opacity: 1;

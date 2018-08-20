@@ -1,6 +1,5 @@
 /* eslint-disable */
 import * as ActionTypes from '../const/ActionType';
-export const CLICK_UP = 'CLICK_UP';
 
 //改变初始状态
 export function changestatus(status) {
