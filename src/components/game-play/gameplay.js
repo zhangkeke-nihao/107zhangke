@@ -1,7 +1,5 @@
-
 import React, { Component } from 'react';
 import './gameplay.css';
-
 
 export default class GamePlay extends Component {
   state = { };
@@ -12,8 +10,6 @@ export default class GamePlay extends Component {
     e.preventDefault();
     this.startX = e.changedTouches[0].clientX;
     this.startY = e.changedTouches[0].clientY;
-    // console.log(this.startX);
-    // console.log(this.startY);
   }
   onTouchEnd = e => {
     e.preventDefault();
@@ -39,9 +35,7 @@ export default class GamePlay extends Component {
   }
   renderGamePlayItem = () => {
     const { gameGrid, flag } = this.props;
-    // console.log(gameGrid, flag);
     return gameGrid.map((m, row) => m.map((n, column) => {
-      // console.log(flag);
       if (gameGrid[row][column] !== 0 && flag[row][column] === 0) {
         return <div key={column} className={`Num${gameGrid[row][column]}`}>{gameGrid[row][column]}</div>;
       } else if (gameGrid[row][column] !== 0 && flag[row][column] === 1) {
@@ -54,7 +48,12 @@ export default class GamePlay extends Component {
   }
   render() {
     return (
-      <div className="game_container" onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} onTouchMove={this.onTouchMove}>
+      <div
+        className="game_play_container"
+        onTouchStart={this.onTouchStart}
+        onTouchEnd={this.onTouchEnd}
+        onTouchMove={this.onTouchMove}
+      >
         {this.renderGamePlayItem()}
       </div>
     );

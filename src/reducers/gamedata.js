@@ -15,7 +15,7 @@ const initState = {
     [0, 0, 0, 0]
   ],
   initdispaly: false,
-  equaljude: 0,
+  isMoved: true,
   score: 0,
   scoreAdd: 0,
   bestScore: 0,
@@ -34,264 +34,271 @@ export function gamedata(state = initState, action) {
           [0, 0, 0, 0]
         ],
         initdispaly: false,
+        score: 0,
+        isMoved: true,
+        scoreAdd: 0,
+        bestScoreAdd: 0
       };
-    case ActionTypes.CHANGE_STATUS:{
+    case ActionTypes.CHANGE_STATUS:{   // 更新初始状态，RANDOM_NUMBER
       return {
         ...state,
-        initdispaly: true
+        initdispaly: true,
+        isGameOver: false
+      }
+    }
+    case ActionTypes.IS_MOVE:{  // 判断是否有移动
+      return {
+        ...state,
+        isMoved: false
       }
     }
     case ActionTypes.CLICK_MOVE_UP: // 上移
       let upgameGrid = state.gameGrid.slice();
-      const newupflag = state.flag.slice();
+      const newupflag = [ 
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ];
+      let isUpMoved = state.isMoved;
       let scoreup = state.score;
-      let scoreAddup = state.scoreAdd;
-      let jude = state.equaljude;
-      for(let m = 3;m > 0;m--){
+      let bestscoreup = state.bestScore;
+      let scoreAddup = 0;
+      let bestscoreAddup = 0;
+      for (let m = 3;m > 0;m--) {
         for (let j = 0; j < 4; j++) {
           for (let i = 0; i < 3; i++) {
-            //上一行=0，下一行！=0，下一行的数字移动到上一行，同时下一行置为0
-            if (upgameGrid[i][j] == 0 && upgameGrid[i + 1][j] !== 0) { 
+            if (upgameGrid[i][j] == 0 && upgameGrid[i + 1][j] != 0) { 
               upgameGrid[i][j] = upgameGrid[i + 1][j];
               upgameGrid[i + 1][j] = 0;
+              isUpMoved = true;
             }
           }
         }
       }
-      console.log(jude);
-      upgameGrid[0].map((i,idx) => {
-        if(jude == 0){
-          if(upgameGrid[0][idx] !== 0 && upgameGrid[0][idx] == upgameGrid[1][idx]){
-            upgameGrid[0][idx] = 2 * upgameGrid[0][idx];
-            upgameGrid[1][idx] = 0;
-            jude = 1;
+      for (let j = 0; j < 4; j++) {
+        for (let i = 0; i < 3; i++) {
+          if (upgameGrid[i][j] != 0 && upgameGrid[i][j] == upgameGrid[i + 1][j]) {
+            upgameGrid[i][j] *= 2; 
+            upgameGrid[i + 1][j] = 0;
+            scoreAddup = scoreAddup + upgameGrid[i][j];
+            bestscoreAddup = bestscoreAddup + upgameGrid[i][j];
+            scoreup = scoreup + upgameGrid[i][j]; 
+            if(bestscoreup < scoreup){
+              bestscoreup = scoreup;
+            }
+            isUpMoved = true;
+            newupflag[i][j] = 1; 
           }
         }
-        if(jude == 0){
-          if(upgameGrid[0][idx] !== 0 && upgameGrid[0][idx] == upgameGrid[1][idx] && upgameGrid[2][idx] !== 0){
-            upgameGrid[0][idx] = 2 * upgameGrid[0][idx];
-            upgameGrid[1][idx] =  upgameGrid[2][idx];
-            jude = 1;
+      }
+      for (let j = 0; j < 4; j++) {
+        for (let n = 0; n < 2; n++) {
+          for (let i = 0; i < 3; i++) {
+              if (upgameGrid[i][j] == 0 && upgameGrid[i + 1][j] != 0) {
+                upgameGrid[i][j] = upgameGrid[i + 1][j];
+                upgameGrid[i + 1][j] = 0;
+                if (newupflag[i + 1][j] == 1) { // 数值的样式标志需要跟着上移
+                  newupflag[i][j] = newupflag[i + 1][j];
+                  newupflag[i + 1][j] = 0;
+                }
+              }
           }
         }
-        if(jude == 0){
-          if(upgameGrid[0][idx] !== 0 && upgameGrid[0][idx] == upgameGrid[1][idx] && upgameGrid[3][idx] !== 0){
-            upgameGrid[0][idx] = 2 * upgameGrid[0][idx];
-            upgameGrid[1][idx] =  upgameGrid[3][idx];
-            jude = 1;
-          }
-        }
-      })
-      console.log(jude);
-      upgameGrid[2].map((i,idx) => {
-        if(jude == 0){
-          if(upgameGrid[2][idx] !== 0 && upgameGrid[2][idx] == upgameGrid[3][idx]){
-            upgameGrid[2][idx] = 2 * upgameGrid[2][idx];
-            upgameGrid[3][idx] = 0;
-            jude = 1;
-          }
-        }
-        
-      })
-      console.log(jude);
-      upgameGrid[1].map((i,idx) => {
-        if(jude == 0){    // ***********
-          if(upgameGrid[1][idx] !== 0 && upgameGrid[1][idx] == upgameGrid[2][idx]){
-            upgameGrid[1][idx] = 2 * upgameGrid[1][idx];
-            upgameGrid[2][idx] = 0;
-            jude = 1
-          }
-        }
-        if(jude == 0){    // ***********
-          if(upgameGrid[1][idx] !== 0 && upgameGrid[1][idx] == upgameGrid[2][idx] && upgameGrid[3][idx] !== 0){
-            upgameGrid[1][idx] = 2 * upgameGrid[1][idx];
-            upgameGrid[2][idx] = upgameGrid[3][idx];
-            jude = 1
-          }
-        }
-        if(upgameGrid[1][idx] !== 0 && upgameGrid[1][idx] == upgameGrid[3][idx] && upgameGrid[2][idx] == 0){
-          upgameGrid[1][idx] = 2 * upgameGrid[1][idx];
-          upgameGrid[3][idx] = 0;
-        }
-      })
-      console.log(jude);
+      }
       return {
         ...state,
         gameGrid: upgameGrid,
+        isMoved:isUpMoved,
         flag: newupflag,
         score: scoreup,
-        scoreAdd: scoreAddup
+        scoreAdd: scoreAddup,
+        bestScore: bestscoreup,
+        bestScoreAdd: bestscoreAddup
       };
-
       case ActionTypes.CLICK_MOVE_DOWN: // 下移
         const downgameGrid = state.gameGrid.slice();
-        const newdownflag = state.flag.slice();
+        const newdownflag = [ 
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]
+        ];
+        let isdownMove = state.isMoved;
         let scoredown = state.score;
-        let scoreAdddown = state.scoreAdd;
-        let juded = state.equaljude;
-        for ( let o = 3; o > 0; o--) {
-          for (let j = 0; j < 4; j++) {
-            for (let i = 3; i > 0; i--) {
-              //下一行=0，上一行！=0
-              if (downgameGrid[i][j] == 0 && downgameGrid[i - 1][j] !== 0) {
+        let bestscoredown = state.bestScore;
+        let scoreAdddown = 0;
+        let bestscoreAdddown = 0;
+        for (let n = 3;n > 0;n--) {
+          for (let i = 3; i > 0; i--) {
+            for (let j = 0; j < 4; j++) {
+              if (downgameGrid[i][j] == 0 && downgameGrid[i - 1][j] != 0) {
                 downgameGrid[i][j] = downgameGrid[i - 1][j];
                 downgameGrid[i - 1][j] = 0;
+                isdownMove = true;
               }
             }
           }
         }
-        downgameGrid[3].map((i,idx) => {
-          if(juded == 0){
-            if(downgameGrid[3][idx] !== 0 && downgameGrid[3][idx] == downgameGrid[2][idx]){
-              downgameGrid[3][idx] = 2 * downgameGrid[3][idx];
-              downgameGrid[2][idx] = 0;
-              jude = 1;
+        for (let i = 3; i > 0; i--) {
+          for (let j = 0; j < 4; j++) {
+            if (downgameGrid[i][j] != 0 && downgameGrid[i][j] == downgameGrid[i - 1][j]) {
+              downgameGrid[i][j] *= 2;
+              downgameGrid[i - 1][j] = 0;
+              isdownMove = true;
+              newdownflag[i][j] = 1;
+              scoreAdddown = scoreAdddown + downgameGrid[i][j];
+              bestscoreAdddown = bestscoreAdddown + downgameGrid[i][j];
+              scoredown = scoredown + downgameGrid[i][j];
+              if(bestscoredown < scoredown){
+                bestscoredown = scoredown;
+              }
             }
           }
-          if(juded == 0){
-            if(downgameGrid[3][idx] !== 0 && downgameGrid[3][idx] == downgameGrid[2][idx] && downgameGrid[1][idx] !== 0){
-              downgameGrid[3][idx] = 2 * downgameGrid[3][idx];
-              downgameGrid[2][idx] =  downgameGrid[1][idx];
-              juded = 1;
+        }
+
+        for (let i = 3; i > 0; i--) {
+          for (let n = 0; n < 2; n++) {
+            for (let j = 0; j < 4; j++) {
+              if (downgameGrid[i][j] == 0 && downgameGrid[i - 1][j] != 0) {
+                downgameGrid[i][j] = downgameGrid[i - 1][j];
+                downgameGrid[i - 1][j] = 0;
+                if (newdownflag[i - 1][j] == 1) {
+                  newdownflag[i][j] = newdownflag[i - 1][j];
+                  newdownflag[i - 1][j] = 0;
+                }
+              }
             }
           }
-          if(juded == 0){
-            if(downgameGrid[3][idx] !== 0 && downgameGrid[3][idx] == downgameGrid[2][idx] && downgameGrid[0][idx] !== 0){
-              downgameGrid[3][idx] = 2 * downgameGrid[3][idx];
-              downgameGrid[2][idx] =  downgameGrid[0][idx];
-              juded = 1;
-            }
-          }
-        })
-        downgameGrid[1].map((i,idx) => {
-          if(juded == 0){
-            if(downgameGrid[1][idx] !== 0 && downgameGrid[1][idx] == downgameGrid[0][idx]){
-              downgameGrid[1][idx] = 2 * downgameGrid[1][idx];
-              downgameGrid[0][idx] = 0;
-              juded = 1;
-            }
-          }
-          
-        })
-        downgameGrid[2].map((i,idx) => {
-          if(juded == 0){    // ***********
-            if(downgameGrid[2][idx] !== 0 && downgameGrid[2][idx] == downgameGrid[1][idx]){
-              downgameGrid[2][idx] = 2 * downgameGrid[2][idx];
-              downgameGrid[1][idx] = 0;
-              juded = 1
-            }
-          }
-          if(juded == 0){    // ***********
-            if(downgameGrid[2][idx] !== 0 && downgameGrid[2][idx] == downgameGrid[1][idx] && downgameGrid[0][idx] !== 0){
-              downgameGrid[2][idx] = 2 * downgameGrid[2][idx];
-              downgameGrid[1][idx] = downgameGrid[0][idx];
-              juded = 1
-            }
-          }
-          if(downgameGrid[2][idx] !== 0 && downgameGrid[2][idx] == downgameGrid[0][idx] && downgameGrid[1][idx] == 0){
-            downgameGrid[2][idx] = 2 * downgameGrid[2][idx];
-            downgameGrid[0][idx] = 0;
-          }
-        })
-       
+        }
         return {
           ...state,
           gameGrid: downgameGrid,
           flag: newdownflag,
+          isMoved: isdownMove,
           score: scoredown,
-          scoreAdd: scoreAdddown
+          scoreAdd: scoreAdddown,
+          bestScore: bestscoredown,
+          bestScoreAdd: bestscoreAdddown
       };
       case ActionTypes.CLICK_MOVE_LEFT: // 左移
         let leftgameGrid = state.gameGrid.slice();
-        const newleftflag = state.flag.slice();
-        let judel = state.equaljude;
+        let newleftflag = [ 
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]
+        ];
+        let isleftMove = state.isMoved;
         let scoreleft = state.score;
-        let scoreAddleft = state.scoreAdd;
-        for (let n = 3; n > 0; n--) {
+        let bestscoreleft = state.bestScore;
+        let scoreAddleft = 0;
+        let bestscoreAddleft = 0;
+        for ( let o = 3;o > 0;o--) {
           for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 3; j++) {
-              //前一列=0，后一列！=0
-              if (leftgameGrid[i][j] == 0 && leftgameGrid[i][j+1] != 0) {
-                leftgameGrid[i][j] = leftgameGrid[i][j+1];
-                leftgameGrid[i][j+1] = 0;
+              if (leftgameGrid[i][j] == 0 && leftgameGrid[i][j + 1] != 0) {
+                leftgameGrid[i][j] = leftgameGrid[i][j + 1];
+                leftgameGrid[i][j + 1] = 0;
+                isleftMove = true;
               }
             }
           }
         }
-        // leftgameGrid[0].map((i,idx) => {
-        //   if(judel == 0){
-        //     if(leftgameGrid[0][idx] !== 0 && leftgameGrid[0][idx] == leftgameGrid[1][idx]){
-        //       leftgameGrid[0][idx] = 2 * leftgameGrid[0][idx];
-        //       leftgameGrid[1][idx] = 0;
-        //       judel = 1;
-        //     }
-        //   }
-        //   if(judel == 0){
-        //     if(leftgameGrid[0][idx] !== 0 && leftgameGrid[0][idx] == leftgameGrid[1][idx] && leftgameGrid[2][idx] !== 0){
-        //       leftgameGrid[0][idx] = 2 * leftgameGrid[0][idx];
-        //       leftgameGrid[1][idx] =  leftgameGrid[2][idx];
-        //       judel = 1;
-        //     }
-        //   }
-        //   if(judel == 0){
-        //     if(leftgameGrid[0][idx] !== 0 && leftgameGrid[0][idx] == leftgameGrid[1][idx] && leftgameGrid[3][idx] !== 0){
-        //       leftgameGrid[0][idx] = 2 * leftgameGrid[0][idx];
-        //       leftgameGrid[1][idx] =  leftgameGrid[3][idx];
-        //       judel = 1;
-        //     }
-        //   }
-        // })
-        // leftgameGrid[1].map((i,idx) => {
-        //   if(judel == 0){
-        //     if(leftgameGrid[1][idx] !== 0 && leftgameGrid[1][idx] == leftgameGrid[0][idx]){
-        //       leftgameGrid[1][idx] = 2 * leftgameGrid[1][idx];
-        //       leftgameGrid[0][idx] = 0;
-        //       judel = 1;
-        //     }
-        //   }
-          
-        // })
-        // leftgameGrid[2].map((i,idx) => {
-        //   if(judel == 0){    // ***********
-        //     if(leftgameGrid[2][idx] !== 0 && leftgameGrid[2][idx] == leftgameGrid[1][idx]){
-        //       leftgameGrid[2][idx] = 2 * leftgameGrid[2][idx];
-        //       leftgameGrid[1][idx] = 0;
-        //       judel = 1
-        //     }
-        //   }
-        //   if(judel == 0){    // ***********
-        //     if(leftgameGrid[2][idx] !== 0 && leftgameGrid[2][idx] == leftgameGrid[1][idx] && leftgameGrid[0][idx] !== 0){
-        //       leftgameGrid[2][idx] = 2 * leftgameGrid[2][idx];
-        //       leftgameGrid[1][idx] = leftgameGrid[0][idx];
-        //       judel = 1
-        //     }
-        //   }
-        //   if(leftgameGrid[2][idx] !== 0 && leftgameGrid[2][idx] == leftgameGrid[0][idx] && leftgameGrid[1][idx] == 0){
-        //     leftgameGrid[2][idx] = 2 * leftgameGrid[2][idx];
-        //     leftgameGrid[0][idx] = 0;
-        //   }
-        // })
+
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (leftgameGrid[i][j] != 0 && leftgameGrid[i][j] == leftgameGrid[i][j + 1]) {
+              leftgameGrid[i][j] *= 2;
+              leftgameGrid[i][j + 1] = 0;
+              isleftMove = true;
+              newleftflag[i][j] = 1;
+              scoreAddleft = scoreAddleft + leftgameGrid[i][j];
+              bestscoreAddleft = bestscoreAddleft + leftgameGrid[i][j];
+              scoreleft = scoreleft + leftgameGrid[i][j];
+              if(bestscoreleft < scoreleft){
+                bestscoreleft = scoreleft
+              }
+            }
+          }
+        }
+
+        for (let i = 0; i < 4; i++) {
+          for (let n = 0; n < 2; n++) {
+            for (let j = 0; j < 3; j++) {
+              if (leftgameGrid[i][j] == 0 && leftgameGrid[i][j + 1] != 0) {
+                leftgameGrid[i][j] = leftgameGrid[i][j + 1];
+                leftgameGrid[i][j + 1] = 0;
+                if (newleftflag[i][j + 1] == 1) {
+                  newleftflag[i][j] = newleftflag[i][j + 1];
+                  newleftflag[i][j + 1] = 0;
+                }
+              }
+            }
+          }
+        }
         return {
           ...state,
           gameGrid: leftgameGrid,
+          isMoved: isleftMove,
           flag: newleftflag,
           score: scoreleft,
-          scoreAdd: scoreAddleft
+          scoreAdd: scoreAddleft,
+          bestScore: bestscoreleft,
+          bestScoreAdd: bestscoreAddleft
         };
       case ActionTypes.CLICK_MOVE_RIGHT: // 右移
         const rightgameGrid = state.gameGrid.slice();
-        const newrightflag = state.flag.slice();
-        let juder = state.equaljude;
+        const newrightflag = [ 
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]
+        ];
+        let isrightMove = state.isMoved;
         let scoreright = state.score;
-        let scoreAddright = state.scoreAdd;
-        for (let p = 3; p > 0; p--) {
+        let bestscoreright = state.bestScore;
+        let scoreAddright = 0;
+        let bestscoreAddright = 0;
+        for (let p = 3;p > 0;p--) {
+          for (let j = 3; j > 0; j--) {
+            for (let i = 0; i < 4; i++) {
+              if (rightgameGrid[i][j] == 0 && rightgameGrid[i][j - 1] != 0) {
+                rightgameGrid[i][j] = rightgameGrid[i][j - 1];
+                rightgameGrid[i][j - 1] = 0;
+                isrightMove = true;
+              }
+            }
+          }
+        }
+
+        for (let j = 3; j > 0; j--) {
           for (let i = 0; i < 4; i++) {
-            for (let j = 3; j > 0; j--) {
-              //后一列=0，前一列！=0
-              if (rightgameGrid[i][j] == 0 && rightgameGrid[i][j-1] != 0) {
-                rightgameGrid[i][j] = rightgameGrid[i][j-1];
-                rightgameGrid[i][j-1] = 0;
-                // state.initdispaly = true;
+            if (rightgameGrid[i][j] != 0 && rightgameGrid[i][j] == rightgameGrid[i][j - 1]) {
+              rightgameGrid[i][j] *= 2;
+              rightgameGrid[i][j - 1] = 0;
+              isrightMove = true;
+              scoreAddright = scoreAddright + rightgameGrid[i][j];
+              bestscoreAddright = bestscoreAddright + rightgameGrid[i][j];
+              newrightflag[i][j] = 1;
+              scoreright = scoreright + rightgameGrid[i][j];
+              if(bestscoreright < scoreright){
+                bestscoreright = scoreright;
+              }
+            }
+          }
+        }
+
+        for (let j = 3; j > 0; j--) {
+          for (let n = 0; n < 2; n++) {
+            for (let i = 0; i < 4; i++) {
+              if (rightgameGrid[i][j] == 0 && rightgameGrid[i][j - 1] != 0) {
+                rightgameGrid[i][j] = rightgameGrid[i][j - 1];
+                rightgameGrid[i][j - 1] = 0;
+                if (newrightflag[i][j - 1] == 1) {
+                  newrightflag[i][j] = newrightflag[i][j - 1];
+                  newrightflag[i][j - 1] = 0;
+                }
               }
             }
           }
@@ -299,12 +306,13 @@ export function gamedata(state = initState, action) {
         return {
           ...state,
           gameGrid: rightgameGrid,
+          isMoved: isrightMove,
           flag: newrightflag,
           score: scoreright,
-          scoreAdd: scoreAddright
+          bestScore: bestscoreright,
+          scoreAdd: scoreAddright,
+          bestScoreAdd: bestscoreAddright
         };
-
-
     default:
       return state;
   }

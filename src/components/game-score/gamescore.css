@@ -47,26 +47,120 @@
 
 
 /* 分数的效果 */
-@-webkit-keyframes 'scoreAddition' {
+/* @-webkit-keyframes scoreAdditiontrue {
     from {
         opacity: 1;
         top: 25px;
     }
     to {
         opacity: 0;
-        top: -25px;
+        top: -100px;
     }
-
 }
-.scores .score-addition, .bestScore .score-addition {
-    position: absolute;
-    right: 37px;
-    color: red;
-    font-size: 25px;
-    line-height: 25px;
+@-webkit-keyframes scoreAdditionfalse {
+    from {
+        opacity: 1;
+        top: 25px;
+    }
+    to {
+        opacity: 0;
+        top: -100px;
+    }
+}
+.score_container .score-addition_true{
+    display: inline-block;
+    position: absolute; 
+    top:50px;
+    right:0;
+    font-size: 14px;
     font-weight: bold;
-    color: rgba(119, 110, 101, 0.9);
+    color: rgba(99, 60, 80, 0.9);
+    z-index: 100;
+    -webkit-animation: scoreAdditiontrue 800ms ease-in;
+    animation-fill-mode: forwards;
+}
+.score_container .score-addition_false{
+    display: inline-block;
+    position: absolute; 
+    top:50px;
+    right:0;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(99, 60, 80, 0.9);
+    z-index: 100;
+    -webkit-animation: scoreAdditionfalse 800ms ease-in;
+    animation-fill-mode: forwards;
+} */
+@-webkit-keyframes scoreAddition {
+    from {
+        opacity: 1;
+        top: 25px;
+    }
+    to {
+        opacity: 0;
+        top: -100px;
+    }
+}
+.score_container .score-addition{
+    display: inline-block;
+    position: absolute; 
+    top:50px;
+    right:0;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(99, 60, 80, 0.9);
     z-index: 100;
     -webkit-animation: scoreAddition 600ms ease-in;
 }
 
+
+@media screen and (max-width: 520px) {
+    .title{
+        font-size: 24px;
+    }
+    .score_container{
+        margin-top:5px; 
+        margin-bottom:10px;
+    }
+    .scores,.bestScore{
+        padding: 5px 2px 0 5px;
+        margin-right: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .scores::before, .bestScore::before {
+        font-size: 12px;
+    }
+    .scores::before{
+        width: 60px;
+    }
+    .score_container .score-addition{
+        top:28px;
+        font-size: 8px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .title{
+        font-size: 18px;
+    }
+    .score_container{
+        margin-top:5px; 
+        margin-bottom:10px;
+    }
+    .scores,.bestScore{
+        padding: 3px 1px 0 3px;
+        margin-right: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+    .scores::before, .bestScore::before {
+        font-size: 12px;
+    }
+    .scores::before{
+        width: 60px;
+    }
+    .score_container .score-addition{
+        top:25px;
+        font-size: 8px;
+    }
+}

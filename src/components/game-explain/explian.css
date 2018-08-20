@@ -1,4 +1,3 @@
-
 /* 游戏说明 */
 .game_info_left {
     float: left;
@@ -24,4 +23,33 @@
     content: "";
     display: block;
     clear: both;
+}
+
+@media screen and (max-width: 520px) {
+    .game_info_left {
+        line-height: 25px;
+        font-size: 16px;
+    }
+    .game_restart {
+        float: left;
+        margin-top:15px;
+        padding: 0 15px;
+        font-size: 16px;
+        height: 25px;
+        line-height: 25px;
+    }
+}
+@media screen and (max-width: 400px) {   
+    .game_info_left {
+        line-height: 20px;
+        font-size: 14px;
+    }
+    .game_restart {
+        float: left;
+        margin-top:10px;
+        padding: 0 10px;
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+    }
 }

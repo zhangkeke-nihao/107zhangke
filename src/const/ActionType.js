@@ -5,3 +5,5 @@ export const CLICK_MOVE_DOWN = 'CLICK_MOVE_DOWN';
 export const CLICK_MOVE_LEFT = 'CLICK_MOVE_LEFT';
 export const CLICK_MOVE_RIGHT = 'CLICK_MOVE_RIGHT';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const IS_MOVE = 'IS_MOVE';
+export const IS_GAMEOVER = 'IS_GAMEOVER';
