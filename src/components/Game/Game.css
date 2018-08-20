@@ -1,0 +1,19 @@
+.game-wrap{
+    width: 500px;
+    margin: 0 auto;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #776e65;
+}
+
+@media screen and (max-width: 520px) {
+    .game-wrap{
+        margin:50px auto;
+        width: 350px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .game-wrap{
+        width: 250px;
+        margin:50px auto;
+    }
+}

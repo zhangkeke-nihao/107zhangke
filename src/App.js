@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 import 'antd/dist/antd.css';
-import ReviewWrapper from './container/ReviewWrap/ReviewWrapper'
 
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 
+import GameHome from './container/GameHome/GameHome';
+import './App.css';
+
 const store = configureStore();
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-          <ReviewWrapper />
-      </Provider>
-      );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <GameHome />
+  </Provider>
+);
 
+export default App;
