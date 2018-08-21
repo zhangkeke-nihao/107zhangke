@@ -1,0 +1,18 @@
+数据state存在store里面，用connect跟组件连接，通过mapStateToProps（state）{}方法传递给组件，然后通过dispatch把action（携带要修改数据的信息）发送到reducer，
+在reducer里面更新数据。
+【通过mapDispatchToProps（dispatch）方法把dispatch传递给组件，同时可以通过bindActionCreators方法跟action做一个绑定】
+
+当需要从后台获取数据时，通过axios获取，在触发的action那儿使用中间件去获取数据，创建中间件：store => next =>action{}，先判断action里面有没有自己定义的字段，
+没有就走下一个action，有的话先判断传过来的参数类型，正确的话就可以去请求数据了，通过promise（resolve，reject）去拿到数据，先通过axios去请求，数据拉取成功的话
+就走.then方法，通过resolve拿到成功后拉取下来的数据，失败的话就走.catch方法，拿到的是错误信息。然后请求成功的话，就走.then方法，最终拿到的数据是reslove里面拿到的数据，
+请求失败的话，就走.catch方法，拿到的是reject里面拿到的错误信息。然后就可以把数据传到reducer了。
+
+在请求到数据的时候可以对数据进行扁平化操作，先在schema中具体定义自己想要的entity数据结构。然后在action中根据需求具体定义normalize方法，
+在中间件中引入该方法，这个方法就是把自己定义的entities替换掉原来的data。这样传到reducer的数据就是扁平化后的数据了。reducer再进行数据处理。
+reducer做的事情就是把result拿到，
+将entities和result一起传入组件中。渲染时，把result（id）进行map，通过id找到对应数据再合到原来位置即可 。
+	
+
+
+
+
