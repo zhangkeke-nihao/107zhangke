@@ -5,6 +5,24 @@ import './gamescore.css';
 export default class GameScore extends Component {
   state = { }
 
+  renderScore = () => {
+    const { scoreAdd } = this.props;
+    if (scoreAdd !== 0) {
+      return (
+        <div className="score-addition">+ {scoreAdd}</div>
+      );
+    }
+    return null;
+  }
+  renderbestScore = () => {
+    const { score, bestScore, bestScoreAdd } = this.props;
+    if (bestScore <= score && bestScoreAdd !== 0) {
+      return (
+        <div className="score-addition">+ {bestScoreAdd}</div>
+      );
+    }
+    return null;
+  }
   render() {
     const {
       score, bestScore
@@ -15,9 +33,11 @@ export default class GameScore extends Component {
         <div className="score_container">
           <div className="scores">
             {score}
+            {this.renderScore()}
           </div>
           <div className="bestScore">
             {bestScore}
+            {this.renderbestScore()}
           </div>
         </div>
       </div>
