@@ -42,67 +42,9 @@ class GameHome extends Component {
         break;
     }
   }
-  // 初始函数，取得随机位置、随机值
-  initrandomNum = () => { 
-    const { gamedata, Actions } = this.props;
-    // 判断是否赢得游戏
-    for (let i = 0; i < 4; i++) {  
-			for (let j = 0; j < 4; j++) {
-				if (gamedata.gameGrid[i][j] == 2048) {
-					alert("You win the Game2048!");
-					break;
-				}
-			}
-    }
-    // 判断全满且没有相同可以合并时，游戏结束
-    let xCount = 0;
-		let yCount = 0;
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 3; j++) {
-				if ((gamedata.gameGrid[i][j] != 0) && (gamedata.gameGrid[i][j + 1] != 0) && (gamedata.gameGrid[i][j] != gamedata.gameGrid[i][j + 1])) {
-          xCount++;
-          break;
-				}
-			}
-		}
-		for (let j = 0; j < 4; j++) {
-			for (let i = 0; i < 3; i++) {
-				if ((gamedata.gameGrid[i][j] != 0) && (gamedata.gameGrid[i + 1][j] != 0) && (gamedata.gameGrid[i][j] != gamedata.gameGrid[i + 1][j])) {
-          yCount++;
-          break;
-				}
-			}
-		}
-		if (xCount == 12 && yCount == 12) {  // 判断全满且没有相同可以合并时，游戏结束
-      alert("Game Over! Please click the \"Restart\" to restart the Game2048!")
-      
-    }
-    
-    if(gamedata.isMoved === true) { // 先判断是否有滑动
-      let randnum = Math.ceil(Math.random() * 4); // 生成随机数  [1,2,3,4]
-      if (randnum !== 4) {
-        randnum = 2;
-      }
-      const x = Math.floor(Math.random() * 4); // 生成随机位置 [0,1,2,3]
-      const y = Math.floor(Math.random() * 4); // 生成随机位置 [0,1,2,3]
-      if (gamedata.gameGrid[x][y] > 0) {
-        this.initrandomNum();
-      } else {
-        gamedata.gameGrid[x][y] = randnum;
-        gamedata.flag[x][y] = 2;
-      }
-      if (gamedata.initdispaly === false) {
-        Actions.changestatus(true);
-      } else {
-        Actions.ismove();
-      }
-      // Actions.ismove();
-    }
-  }
   render() {
     return (
       <div className="wrap">
-        {this.initrandomNum()}
         <Game
           Actions={this.props.Actions}
           gameGrid={this.props.gamedata.gameGrid}

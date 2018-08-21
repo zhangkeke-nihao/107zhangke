@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 
 import './gamescore.css';
 
+let scoreanimate1 = false;
+let scoreanimate2 = false;
 export default class GameScore extends Component {
   state = { }
 
   renderScore = () => {
     const { scoreAdd } = this.props;
     if (scoreAdd !== 0) {
+      scoreanimate1 = !scoreanimate1;
       return (
-        <div className="score-addition">+ {scoreAdd}</div>
+        <div className={`score-addition_${scoreanimate1}`}>+ {scoreAdd}</div>
       );
     }
     return null;
@@ -17,8 +20,9 @@ export default class GameScore extends Component {
   renderbestScore = () => {
     const { score, bestScore, bestScoreAdd } = this.props;
     if (bestScore <= score && bestScoreAdd !== 0) {
+      scoreanimate2 = !scoreanimate2;
       return (
-        <div className="score-addition">+ {bestScoreAdd}</div>
+        <div className={`score-addition_${scoreanimate2}`}>+ {bestScoreAdd}</div>
       );
     }
     return null;
