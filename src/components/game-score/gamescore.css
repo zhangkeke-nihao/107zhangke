@@ -110,7 +110,7 @@
         font-size: 20px;
     }
     .scores::before{
-        width: 60px;
+        width: 80px;
     }
     .score_container .score-addition{
         top:28px;
@@ -129,13 +129,13 @@
         padding: 3px 1px 0 3px;
         margin-right: 5px;
         border-radius: 5px;
-        font-size: 20px;
+        font-size: 18px;
     }
     .scores::before, .bestScore::before {
         font-size: 14px;
     }
     .scores::before{
-        width: 60px;
+        width: 70px;
     }
     .score_container .score-addition{
         top:25px;
