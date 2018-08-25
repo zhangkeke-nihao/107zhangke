@@ -354,75 +354,16 @@
 }
 @media screen and (max-width: 400px) {
     .game_play_container {
-        margin-top: 120px;
-        width: 250px;
-        height: 250px;
+        margin-top: 100px;
+        width: 300px;
+        height: 300px;
     }
     .game_play_container div {
         margin: 14.5px 0 0 14.5px;
-        height: 45px;
-        width: 45px;
+        height: 57px;
+        width: 57px;
         line-height: 3;
-        font-size: 16px;
+        font-size: 20px;
     }
-    .game_play_container .Num128 {
-        font-size: 22px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num128_Blink {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num128_Appear {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num256 {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num256_Blink {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num256_Appear {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num512 {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num512_Blink {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num512_Appear {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num1024 {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num1024_Blink {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num1024_Appear {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num2048 {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num2048_Blink {
-        font-size: 18px;
-        line-height: 2.3;
-    }
-    .game_play_container .Num2048_Appear {
-        font-size: 18px;
-        line-height: 2.3;
-    }
+
 }
