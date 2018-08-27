@@ -4,8 +4,6 @@ import './explian.css';
 
 export default class Explian extends Component {
   state = { }
-
-
   render() {
     return (
       <div className="game_info">

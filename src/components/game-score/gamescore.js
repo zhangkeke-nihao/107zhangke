@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-
 import './gamescore.css';
 
 let scoreanimate1 = false;
 let scoreanimate2 = false;
 export default class GameScore extends Component {
-  state = { }
-
   renderScore = () => {
     const { scoreAdd } = this.props;
     if (scoreAdd !== 0) {

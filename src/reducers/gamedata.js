@@ -22,6 +22,7 @@ const initState = {
   bestScoreAdd: 0
 };
 initrandomNum(initState);
+
 function initrandomNum (state){ // 初始函数，取得随机位置、随机值
    // 判断是否赢得游戏
   for (let i = 0; i < 4; i++) {  
@@ -73,7 +74,6 @@ function initrandomNum (state){ // 初始函数，取得随机位置、随机值
       state.isMoved = false;
     } 
   }
-  
 }
 export function gamedata(state = initState, action) {
   switch (action.type) {
@@ -93,7 +93,6 @@ export function gamedata(state = initState, action) {
       return {
         ...state,
       };
-
     case ActionTypes.CLICK_MOVE_UP: // 上移
       const newupflag = [ 
         [0, 0, 0, 0],
@@ -103,7 +102,6 @@ export function gamedata(state = initState, action) {
       ];
       let scoreAddup = 0;
       let bestscoreAddup = 0;
-
       for (let m = 3;m > 0;m--) {
         for (let j = 0; j < 4; j++) {
           for (let i = 0; i < 3; i++) {
@@ -162,7 +160,6 @@ export function gamedata(state = initState, action) {
         ];
         let scoreAdddown = 0;
         let bestscoreAdddown = 0;
-
         for (let n = 3;n > 0;n--) {
           for (let i = 3; i > 0; i--) {
             for (let j = 0; j < 4; j++) {
@@ -190,7 +187,6 @@ export function gamedata(state = initState, action) {
             }
           }
         }
-
         for (let i = 3; i > 0; i--) {
           for (let n = 0; n < 2; n++) {
             for (let j = 0; j < 4; j++) {
@@ -232,7 +228,6 @@ export function gamedata(state = initState, action) {
             }
           }
         }
-
         for (let i = 0; i < 4; i++) {
           for (let j = 0; j < 3; j++) {
             if (state.gameGrid[i][j] != 0 && state.gameGrid[i][j] == state.gameGrid[i][j + 1]) {
@@ -249,7 +244,6 @@ export function gamedata(state = initState, action) {
             }
           }
         }
-
         for (let i = 0; i < 4; i++) {
           for (let n = 0; n < 2; n++) {
             for (let j = 0; j < 3; j++) {
@@ -280,7 +274,6 @@ export function gamedata(state = initState, action) {
         ];
         let scoreAddright = 0;
         let bestscoreAddright = 0;
-
         for (let p = 3;p > 0;p--) {
           for (let j = 3; j > 0; j--) {
             for (let i = 0; i < 4; i++) {
@@ -292,7 +285,6 @@ export function gamedata(state = initState, action) {
             }
           }
         }
-
         for (let j = 3; j > 0; j--) {
           for (let i = 0; i < 4; i++) {
             if ( state.gameGrid[i][j] != 0 &&  state.gameGrid[i][j] ==  state.gameGrid[i][j - 1]) {
@@ -309,7 +301,6 @@ export function gamedata(state = initState, action) {
             }
           }
         }
-
         for (let j = 3; j > 0; j--) {
           for (let n = 0; n < 2; n++) {
             for (let i = 0; i < 4; i++) {

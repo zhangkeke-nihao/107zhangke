@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './gameplay.css';
 
 export default class GamePlay extends Component {
-  state = { };
   onTouchMove = e => {
     e.preventDefault();
   }

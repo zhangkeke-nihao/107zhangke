@@ -1,10 +1,7 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../action/index';
-
 import Game from '../../components/Game/Game';
 
 class GameHome extends Component {
@@ -59,13 +56,11 @@ class GameHome extends Component {
   }
 }
 
-
 function mapStateToProps(state) {
   const { gamedata } = state;
   const props = { gamedata };
   return props;
 }
-
 const mapDispatchToProps = dispatch => ({
   Actions: bindActionCreators(actionCreators, dispatch)
 });
